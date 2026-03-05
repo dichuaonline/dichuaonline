@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NgÙi Ch˘a Online - BÏnh An</title>
+    <title>Ng√¥i Ch√πa Online - B√¨nh An</title>
     <style>
         body { text-align: center; background-color: #2c1a0a; font-family: 'Times New Roman', Times, serif; color: #fff; margin: 0; }
         .altar-container { 
-            background-image: url('image_0.png'); /* ?NH N?N CHŸA */
+            background-image: url('image_0.png'); /* ?NH N?N CH√ôA */
             background-size: cover; 
             min-height: 100vh;
             display: flex; flex-direction: column; align-items: center; justify-content: start;
@@ -17,7 +17,7 @@
         .main-altar { margin-top: 30px; position: relative; width: 300px; height: 350px; }
         .bathuong { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 120px; }
         
-        /* Hi?u ?ng nhang khÛi */
+        /* Hi?u ?ng nhang kh√≥i */
         .incense-stick { 
             position: absolute; bottom: 50px; left: 51%; transform: translateX(-50%); 
             width: 30px; display: none; 
@@ -40,34 +40,34 @@
 <body>
 
     <div class="altar-container">
-        <h1>NgÙi Ch˘a Online</h1>
-        <h2>T‚m Th‡nh ThÙng Th·nh</h2>
+        <h1>Ng√¥i Ch√πa Online</h1>
+        <h2>T√¢m Th√†nh Th√¥ng Th√°nh</h2>
 
         <div class="main-altar">
-            <img src="image_1.png" alt="B·t Huong" class="bathuong">
+            <img src="image_1.png" alt="B√°t Huong" class="bathuong">
             <img id="incense-stick" src="image_2.png" alt="Nhang" class="incense-stick">
         </div>
 
-        <button class="act-btn" onclick="thapNhang()">Th?p NÈn T‚m Huong</button>
+        <button class="act-btn" onclick="thapNhang()">Th?p N√©n T√¢m Huong</button>
 
         <button onclick="dieuKhienNhac()" style="margin-top: 10px; background: transparent; color: #d4af37; border: 1px solid #d4af37; padding: 5px 10px; cursor: pointer;">?? T?t / M? Nh?c</button>
 
         <div class="wish-section">
-            <h3>–i?u kh?n nguy?n:</h3>
-            <p>(Vi?t mong u?c c?a b?n v‡ g?i g?m d?n chu Ph?t)</p>
-            <textarea id="wishBox" rows="4" placeholder="VÌ d?: C?u cho gia dÏnh bÏnh an, cÙng vi?c thu?n l?i..."></textarea>
+            <h3>√êi?u kh?n nguy?n:</h3>
+            <p>(Vi?t mong u?c c?a b?n v√† g?i g?m d?n chu Ph?t)</p>
+            <textarea id="wishBox" rows="4" placeholder="V√≠ d?: C?u cho gia d√¨nh b√¨nh an, c√¥ng vi?c thu?n l?i..."></textarea>
             <br>
-            <button class="act-btn" onclick="guiDieuUoc()">G?i –i?u U?c</button>
+            <button class="act-btn" onclick="guiDieuUoc()">G?i √êi?u U?c</button>
         </div>
 
         <div class="qr-section">
-            <h3>C˙ng du?ng cÙng d?c</h3>
-            <p>M?i s? ph·t t‚m c?a qu˝ v? s? gi˙p duy trÏ trang web n‡y.</p>
-            <img src="image_3.png" alt="M„ QR C˙ng Du?ng" class="qr-code-img">
-            <p><strong>STK: 123456789 - Ng‚n h‡ng ABC</strong></p>
+            <h3>C√∫ng du?ng c√¥ng d?c</h3>
+            <p>M?i s? ph√°t t√¢m c?a qu√Ω v? s? gi√∫p duy tr√¨ trang web n√†y.</p>
+            <img src="image_3.png" alt="M√£ QR C√∫ng Du?ng" class="qr-code-img">
+            <p><strong>STK: 123456789 - Ng√¢n h√†ng ABC</strong></p>
         </div>
         
-        <p style="margin-top: 50px; font-size: 12px; color: #aaa;">© 2024 NgÙi Ch˘a BÏnh An Online. All rights reserved.</p>
+        <p style="margin-top: 50px; font-size: 12px; color: #aaa;">¬© 2024 Ng√¥i Ch√πa B√¨nh An Online. All rights reserved.</p>
     </div>
 
     <audio id="nhacNen" loop>
@@ -76,14 +76,14 @@
 
     <script>
         function thapNhang() {
-            // Hi?n nÈn nhang
+            // Hi?n n√©n nhang
             document.getElementById('incense-stick').style.display = 'block';
             
             // B?t nh?c thi?n
             var nhac = document.getElementById('nhacNen');
             nhac.play();
 
-            alert("B?n d„ th?p huong th‡nh t‚m. C?u mong m?i di?u t?t d?p!");
+            alert("B?n d√£ th?p huong th√†nh t√¢m. C?u mong m?i di?u t?t d?p!");
         }
 
         function dieuKhienNhac() {
@@ -98,10 +98,10 @@
         function guiDieuUoc() {
             var wish = document.getElementById('wishBox').value;
             if (wish.trim() !== "") {
-                alert("–i?u u?c c?a b?n d„ du?c g?i di. H„y gi? t‚m an l‡nh.");
+                alert("√êi?u u?c c?a b?n d√£ du?c g?i di. H√£y gi? t√¢m an l√†nh.");
                 document.getElementById('wishBox').value = ""; 
             } else {
-                alert("Vui lÚng nh?p di?u u?c c?a b?n tru?c khi g?i.");
+                alert("Vui l√≤ng nh?p di?u u?c c?a b?n tru?c khi g?i.");
             }
         }
     </script>
