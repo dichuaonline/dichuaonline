@@ -13,37 +13,52 @@
             color: #fff; 
             margin: 0; 
             padding-bottom: 50px;
+            overflow-x: hidden;
         }
 
         /* KHUNG BAO QUÁT */
         .altar-container { 
             min-height: 100vh;
             display: flex; flex-direction: column; align-items: center; justify-content: start;
-            padding-top: 20px;
-            background: radial-gradient(circle, rgba(68,48,34,1) 0%, rgba(26,15,5,1) 100%); 
+            padding-top: 30px;
+            background: radial-gradient(circle, rgba(82, 37, 13, 1) 0%, rgba(20, 10, 2, 1) 100%); 
+            position: relative;
         }
 
-        h1, h2 { color: #d4af37; text-shadow: 2px 2px 4px #000; margin: 10px 0; }
+        /* TRANG TRÍ ĐÈN LỒNG HAI BÊN */
+        .lantern {
+            font-size: 50px;
+            position: absolute;
+            top: 10px;
+            animation: swing 3s infinite ease-in-out alternate;
+            transform-origin: top center;
+            filter: drop-shadow(0 0 15px rgba(255, 50, 0, 0.8));
+            z-index: 10;
+        }
+        .lantern.left { left: 5%; }
+        .lantern.right { right: 5%; animation-delay: 0.5s; }
         
-        /* ẢNH TƯỢNG PHẬT - TỐI ƯU CHO ĐIỆN THOẠI */
+        @keyframes swing {
+            from { transform: rotate(10deg); }
+            to { transform: rotate(-10deg); }
+        }
+
+        h1 { color: #ffcc00; text-shadow: 0 0 10px #ff3300, 2px 2px 4px #000; margin: 10px 0; font-size: 32px; letter-spacing: 2px;}
+        h2 { color: #d4af37; text-shadow: 2px 2px 4px #000; margin: 0 0 20px 0; font-weight: normal; font-style: italic;}
+        
+        /* ẢNH TƯỢNG PHẬT */
         .buddha-statue {
-            width: 95%;             
-            max-width: 600px;       
+            width: 90%;             
+            max-width: 500px;       
             height: auto;           
             border-radius: 15px;    
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4); 
-            margin-bottom: -30px; /* Kéo bát hương lên một chút để tạo độ sâu */
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.5); 
+            margin-bottom: -30px; 
             z-index: 1;             
         }
 
-        /* KHUNG BÁT HƯƠNG (Đã chỉnh lại để tạo khoảng cách an toàn phía dưới) */
-        .main-altar { 
-            position: relative; 
-            width: 300px; height: 180px; /* Thu gọn chiều cao khung để vừa vặn */
-            z-index: 2; 
-            margin-bottom: 40px; /* Đẩy mạnh các nút bấm và QR xuống dưới */
-        }
-        
+        /* KHUNG BÁT HƯƠNG */
+        .main-altar { position: relative; width: 300px; height: 160px; z-index: 2; margin-bottom: 30px; }
         .bathuong { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 140px; }
         
         /* HIỆU ỨNG NHANG KHÓI */
@@ -58,31 +73,59 @@
             100% { opacity: 0.7; transform: translateX(-50%) translateY(0) scale(1); }
         }
 
-        /* CÁC NÚT BẤM */
-        button.act-btn { margin-top: 10px; padding: 12px 25px; font-size: 16px; cursor: pointer; background: #8b4513; color: white; border: 1px solid #d4af37; border-radius: 30px; text-transform: uppercase; font-weight: bold; box-shadow: 0 4px #4a2c1a; transition: all 0.2s; }
-        button.act-btn:active { box-shadow: 0 1px #4a2c1a; transform: translateY(3px); }
+        /* CỤM NÚT BẤM */
+        .button-group { display: flex; flex-direction: column; gap: 15px; align-items: center; width: 100%; z-index: 3;}
         
+        button.act-btn { 
+            padding: 12px 30px; font-size: 16px; cursor: pointer; 
+            background: linear-gradient(145deg, #8b2500, #5c1400); 
+            color: #ffcc00; border: 2px solid #d4af37; border-radius: 30px; 
+            text-transform: uppercase; font-weight: bold; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: all 0.2s; 
+            width: 80%; max-width: 300px;
+        }
+        button.act-btn:active { box-shadow: 0 1px 2px rgba(0,0,0,0.5); transform: translateY(3px); }
+        button.act-btn.xam-btn { background: linear-gradient(145deg, #b8860b, #8b6508); color: #fff;}
+
         /* KHUNG LỜI KHẤN & QR */
         .wish-section, .qr-section { 
-            margin-top: 40px; /* Đảm bảo cách xa các phần phía trên */
-            background: rgba(44, 26, 10, 0.8); 
-            padding: 20px; 
-            border-radius: 15px; 
-            width: 85%; 
-            max-width: 500px; 
-            border: 1px solid #d4af37; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3); 
+            margin-top: 35px; background: rgba(30, 15, 5, 0.85); 
+            padding: 25px 20px; border-radius: 15px; width: 85%; max-width: 500px; 
+            border: 1px solid #d4af37; box-shadow: 0 10px 20px rgba(0,0,0,0.5); 
         }
-        textarea { width: 90%; padding: 12px; margin-top: 10px; border-radius: 8px; border: 1px solid #d4af37; background: rgba(255,255,255,0.9); font-family: inherit; }
-        
+        textarea { width: 90%; padding: 12px; margin-top: 10px; border-radius: 8px; border: 1px solid #d4af37; background: #fff8dc; font-family: inherit; font-size: 15px; color: #333;}
         .qr-code-img { width: 180px; border: 3px solid #d4af37; padding: 5px; background: white; margin-top: 15px; border-radius: 10px;}
+
+        /* POPUP HIỂN THỊ QUẺ XĂM (MODAL) */
+        .modal-xam {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); z-index: 100; justify-content: center; align-items: center;
+        }
+        .xam-content {
+            background: #fff8dc; /* Màu giấy sớ cổ */
+            color: #8b2500;
+            width: 85%; max-width: 400px;
+            padding: 30px 20px;
+            border-radius: 10px;
+            border: 4px double #d4af37;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+            position: relative;
+        }
+        .xam-title { font-size: 24px; font-weight: bold; color: #b22222; margin-bottom: 15px; border-bottom: 1px solid #d4af37; padding-bottom: 10px;}
+        .xam-poem { font-style: italic; font-size: 16px; margin-bottom: 15px; white-space: pre-line; line-height: 1.5;}
+        .xam-meaning { font-size: 15px; color: #333; font-weight: bold; background: rgba(212, 175, 55, 0.2); padding: 10px; border-radius: 5px;}
+        .close-btn { margin-top: 20px; padding: 8px 20px; background: #8b2500; color: #fff; border: none; border-radius: 5px; cursor: pointer; font-size: 15px;}
     </style>
 </head>
 <body>
 
     <div class="altar-container">
+        <div class="lantern left">🏮</div>
+        <div class="lantern right">🏮</div>
+
         <h1>Ngôi Chùa Online</h1>
-        <h2>Tâm Thành Thông Thánh</h2>
+        <h2>Phật Tại Tâm Trung</h2>
 
         <img src="image_0.png" alt="Tượng Phật" class="buddha-statue">
 
@@ -91,28 +134,40 @@
             <img id="incense-stick" src="image_2.png" alt="Nhang" class="incense-stick">
         </div>
 
-        <button class="act-btn" onclick="thapNhang()">Thắp Nén Tâm Hương</button>
-
-        <button onclick="dieuKhienNhac()" style="margin-top: 15px; background: rgba(0,0,0,0.5); color: #d4af37; border: 1px solid #d4af37; padding: 8px 15px; cursor: pointer; border-radius: 20px; font-size: 14px;">🔊 Bật / Tắt Nhạc</button>
+        <div class="button-group">
+            <button class="act-btn" onclick="thapNhang()">Thắp Nén Tâm Hương</button>
+            <button class="act-btn xam-btn" onclick="gieoQueXam()">🎋 Thành Tâm Xin Xăm</button>
+            <button onclick="dieuKhienNhac()" style="background: transparent; color: #d4af37; border: 1px solid #d4af37; padding: 8px 20px; cursor: pointer; border-radius: 20px; font-size: 14px; margin-top: 5px;">🔊 Bật / Tắt Nhạc Thiền</button>
+        </div>
 
         <div class="wish-section">
-            <h3 style="color: #d4af37; margin-bottom: 5px;">Gửi gắm lời khấn nguyện từ tâm</h3>
+            <h3 style="color: #d4af37; margin-bottom: 5px;">Gửi gắm lời khấn nguyện</h3>
             <p style="font-style: italic; font-size: 14px; color: #ccc; margin-top: 0;">
-                (Hãy viết những mong cầu thiện lành cho bản thân và gia quyến, chư Phật chứng minh lòng thành của bạn)
+                (Hãy viết những mong cầu thiện lành cho bản thân và gia quyến)
             </p>
-            <textarea id="wishBox" rows="4" placeholder="Nhập lời khấn nguyện của bạn tại đây..."></textarea>
+            <textarea id="wishBox" rows="4" placeholder="Nam mô A Di Đà Phật. Con nguyện cầu..."></textarea>
             <br>
-            <button class="act-btn" onclick="guiDieuUoc()">Gửi Lời Nguyện Cầu</button>
+            <button class="act-btn" style="width: auto; padding: 10px 20px; font-size: 14px; margin-top: 10px;" onclick="guiDieuUoc()">Gửi Lời Nguyện Cầu</button>
         </div>
 
         <div class="qr-section">
-            <h3 style="color: #d4af37;">Cúng dường công đức</h3>
-            <p style="font-size: 14px;">Mọi sự phát tâm của quý vị sẽ giúp duy trì trang web này và một phần được gửi đến những hoàn cảnh khó khăn.</p>
+            <h3 style="color: #d4af37; margin-top: 0;">Gieo duyên cúng dường</h3>
+            <p style="font-size: 14px; line-height: 1.5;">Mọi sự phát tâm của quý vị sẽ giúp duy trì trang web này và một phần được gửi đến những hoàn cảnh khó khăn.</p>
             <img src="image_3.png" alt="Mã QR Cúng Dường" class="qr-code-img">
-            <p style="font-size: 18px; margin-bottom: 5px;"><strong>STK: 8338988888 - Ngân hàng MB</strong></p>
+            <p style="font-size: 18px; margin-bottom: 5px; color: #ffcc00;"><strong>STK: 8338988888</strong></p>
+            <p style="margin-top: 0;">Ngân hàng MB</p>
         </div>
         
-        <p style="margin-top: 50px; font-size: 12px; color: #888;">© 2024 Ngôi Chùa Bình An Online. All rights reserved.</p>
+        <p style="margin-top: 40px; font-size: 12px; color: #888;">© 2024 Ngôi Chùa Bình An Online. All rights reserved.</p>
+    </div>
+
+    <div class="modal-xam" id="xamModal">
+        <div class="xam-content">
+            <div class="xam-title" id="xamTitle">Tên Quẻ</div>
+            <div class="xam-poem" id="xamPoem">Nội dung thơ</div>
+            <div class="xam-meaning" id="xamMeaning">Lời giải</div>
+            <button class="close-btn" onclick="dongQueXam()">Chấp tay hoan hỉ</button>
+        </div>
     </div>
 
     <audio id="nhacNen" loop>
@@ -120,28 +175,45 @@
     </audio>
 
     <script>
-        function thapNhang() {
-            // Hiện nén nhang
-            document.getElementById('incense-stick').style.display = 'block';
-            
-            // Bật nhạc thiền
-            var nhac = document.getElementById('nhacNen');
-            if (nhac.paused) {
-                nhac.play().catch(function(error) {
-                    console.log("Trình duyệt chặn tự phát nhạc");
-                });
+        // --- DỮ LIỆU CÁC QUẺ XĂM ---
+        const danhSachXam = [
+            {
+                ten: "Quẻ Số 1: THƯỢNG CÁT (Rất Tốt)",
+                tho: "Trời thu mây tạnh trăng tỏ ngời\nMọi việc hanh thông thuận ý trời\nCông danh tài lộc đều như nguyện\nGia đạo bình an khắp chốn vui.",
+                giai: "Lời giải: Quẻ này rất tốt. Mọi sự mong cầu đều thuận lợi. Hãy tiếp tục làm việc thiện để giữ vững phước báu."
+            },
+            {
+                ten: "Quẻ Số 2: TRUNG BÌNH (Bình Hòa)",
+                tho: "Thuyền đi giữa biển sóng nhấp nhô\nGiữ vững tay chèo chớ vội lo\nSương mù rồi sẽ tan biến mất\nBến bờ phía trước đỗ bến đò.",
+                giai: "Lời giải: Công việc hiện tại có chút thử thách hoặc chậm trễ. Khuyên bạn nên nhẫn nại, tĩnh tâm, không hấp tấp thì mọi việc sẽ êm xuôi."
+            },
+            {
+                ten: "Quẻ Số 3: ĐẠI CÁT (Tốt Lành)",
+                tho: "Cây khô nảy lộc đón xuân sang\nChim hót đầu cành nắng chói chang\nQuý nhân phù trợ đường quang đãng\nPhước lộc tràn trề gia đạo an.",
+                giai: "Lời giải: Đang có thời vận rất tốt, người bệnh mau khỏi, người cầu tài đắc lộc. Lòng thành kính của bạn đã thấu đến chư Phật."
+            },
+            {
+                ten: "Quẻ Số 4: HẠ CÁT (Cần Cẩn Trọng)",
+                tho: "Đêm đông giá rét tuyết rơi đầy\nChim chóc tìm về chốn gốc cây\nViệc lớn lúc này khuyên chớ vội\nTu tâm dưỡng tính đợi ngày mai.",
+                giai: "Lời giải: Thời điểm này không hợp để quyết định việc lớn hay đi xa. Hãy an phận thủ thường, năng niệm Phật và phóng sinh để giải trừ nghiệp chướng."
+            },
+            {
+                ten: "Quẻ Số 5: TRUNG BÌNH CÁT (Tốt Vừa)",
+                tho: "Gieo hạt mầm xanh xuống mảnh nương\nCông chăm tưới tẩm sớm dầm sương\nĐợi ngày đơm trái thu quả ngọt\nCó làm có hưởng thuận lẽ thường.",
+                giai: "Lời giải: Quẻ này nhắc nhở luật Nhân Quả. Mọi nỗ lực và sự tử tế của bạn ở hiện tại chắc chắn sẽ mang lại quả ngọt trong tương lai. Hãy kiên trì."
             }
+        ];
 
+        function thapNhang() {
+            document.getElementById('incense-stick').style.display = 'block';
+            var nhac = document.getElementById('nhacNen');
+            if (nhac.paused) { nhac.play().catch(e => console.log(e)); }
             alert("Bạn đã dâng nén tâm hương. Cầu chúc gia đạo bình an, vạn sự kiết tường!");
         }
 
         function dieuKhienNhac() {
             var nhac = document.getElementById('nhacNen');
-            if (nhac.paused) {
-                nhac.play();
-            } else {
-                nhac.pause();
-            }
+            if (nhac.paused) { nhac.play(); } else { nhac.pause(); }
         }
 
         function guiDieuUoc() {
@@ -152,6 +224,25 @@
             } else {
                 alert("Vui lòng viết lời khấn nguyện của bạn trước khi gửi.");
             }
+        }
+
+        // --- CÁC HÀM XỬ LÝ XIN XĂM ---
+        function gieoQueXam() {
+            // Lấy ngẫu nhiên 1 quẻ xăm từ mảng danhSachXam
+            var randomIndex = Math.floor(Math.random() * danhSachXam.length);
+            var queXam = danhSachXam[randomIndex];
+
+            // Gắn nội dung vào khung popup
+            document.getElementById('xamTitle').innerText = queXam.ten;
+            document.getElementById('xamPoem').innerText = queXam.tho;
+            document.getElementById('xamMeaning').innerText = queXam.giai;
+
+            // Hiển thị khung popup
+            document.getElementById('xamModal').style.display = 'flex';
+        }
+
+        function dongQueXam() {
+            document.getElementById('xamModal').style.display = 'none';
         }
     </script>
 </body>
