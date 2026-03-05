@@ -48,23 +48,25 @@
             <img id="incense-stick" src="image_2.png" alt="Nhang" class="incense-stick">
         </div>
 
-        <button class="act-btn" onclick="thapNhang()">Th?p Nén Tâm Huong</button>
+        <button class="act-btn" onclick="thapNhang()">Thắp Nén Tâm Huong</button>
 
         <button onclick="dieuKhienNhac()" style="margin-top: 10px; background: transparent; color: #d4af37; border: 1px solid #d4af37; padding: 5px 10px; cursor: pointer;">?? T?t / M? Nh?c</button>
 
-        <div class="wish-section">
-            <h3>Ði?u kh?n nguy?n:</h3>
-            <p>(Vi?t mong u?c c?a b?n và g?i g?m d?n chu Ph?t)</p>
-            <textarea id="wishBox" rows="4" placeholder="Ví d?: C?u cho gia dình bình an, công vi?c thu?n l?i..."></textarea>
+       <div class="wish-section">
+            <h3>Gửi gắm lời khấn nguyện từ tâm</h3>
+            <p style="font-style: italic; font-size: 14px; color: #ccc;">
+                (Hãy viết những mong cầu thiện lành cho bản thân và gia quyến, chư Phật chứng minh lòng thành của bạn)
+            </p>
+            <textarea id="wishBox" rows="4" placeholder="Nhập lời khấn nguyện của bạn tại đây..."></textarea>
             <br>
-            <button class="act-btn" onclick="guiDieuUoc()">G?i Ði?u U?c</button>
+            <button class="act-btn" onclick="guiDieuUoc()">Gửi Lời Nguyện Cầu</button>
         </div>
 
         <div class="qr-section">
-            <h3>Cúng du?ng công d?c</h3>
-            <p>M?i s? phát tâm c?a quý v? s? giúp duy trì trang web này.</p>
+            <h3>Cúng duờng công đức</h3>
+            <p>Mọi sự phát tâm của quý vị sẽ giúp duy trì trang web này và một phần được gửi đến những hoàn cảnh khó khăn.</p>
             <img src="image_3.png" alt="Mã QR Cúng Du?ng" class="qr-code-img">
-            <p><strong>STK: 123456789 - Ngân hàng ABC</strong></p>
+            <p><strong>STK: 8338988888 - Ngân hàng MB</strong></p>
         </div>
         
         <p style="margin-top: 50px; font-size: 12px; color: #aaa;">© 2024 Ngôi Chùa Bình An Online. All rights reserved.</p>
@@ -76,14 +78,14 @@
 
     <script>
         function thapNhang() {
-            // Hi?n nén nhang
+            // Hiện nén nhang
             document.getElementById('incense-stick').style.display = 'block';
             
-            // B?t nh?c thi?n
+            // Bật nhạc thiền
             var nhac = document.getElementById('nhacNen');
             nhac.play();
 
-            alert("B?n dã th?p huong thành tâm. C?u mong m?i di?u t?t d?p!");
+            alert("Bạn đã dâng nén tâm hương. Cầu chúc gia đạo bình an, vạn sự kiết tường!");
         }
 
         function dieuKhienNhac() {
@@ -98,12 +100,15 @@
         function guiDieuUoc() {
             var wish = document.getElementById('wishBox').value;
             if (wish.trim() !== "") {
-                alert("Ði?u u?c c?a b?n dã du?c g?i di. Hãy gi? tâm an lành.");
+                // Đã đổi "Điều ước" thành "Tâm nguyện"
+                alert("Tâm nguyện của bạn đã được gửi gắm tới chư Phật. Hãy giữ tâm an lành và làm nhiều việc thiện.");
                 document.getElementById('wishBox').value = ""; 
             } else {
-                alert("Vui lòng nh?p di?u u?c c?a b?n tru?c khi g?i.");
+                // Đã đổi "điều ước" thành "lời khấn nguyện"
+                alert("Vui lòng viết lời khấn nguyện của bạn trước khi gửi.");
             }
         }
     </script>
 </body>
+
 </html>
