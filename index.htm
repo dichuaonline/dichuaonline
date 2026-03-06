@@ -95,7 +95,11 @@
         }
         button.act-btn:active { box-shadow: 0 1px 2px rgba(0,0,0,0.5); transform: translateY(3px); }
         button.act-btn.xam-btn { background: linear-gradient(145deg, #b8860b, #8b6508); color: #fff;}
-        button.act-btn:disabled { opacity: 0.7; cursor: not-allowed; } /* Trạng thái nút khi đang chờ gieo quẻ */
+        
+        /* NÚT THỈNH CHUÔNG (MÀU ĐỒNG VÀNG) */
+        button.act-btn.chuong-btn { background: linear-gradient(145deg, #d4af37, #a67c00); color: #333;}
+        
+        button.act-btn:disabled { opacity: 0.7; cursor: not-allowed; } 
 
         /* KHUNG LỜI KHẤN & QR */
         .wish-section, .qr-section { 
@@ -141,4 +145,129 @@
         </div>
 
         <div class="button-group">
-            <button class="act-btn" onclick="thapNhang()">Thắp Nén
+            <button class="act-btn" onclick="thapNhang()">Thắp Nén Tâm Hương</button>
+            <button class="act-btn chuong-btn" onclick="thinhChuong()">🔔 Thỉnh Chuông Gia Trì</button>
+            <button class="act-btn xam-btn" id="btnGieoXam" onclick="gieoQueXam()">🎋 Thành Tâm Xin Xăm</button>
+            <button onclick="dieuKhienNhac()" style="background: transparent; color: #d4af37; border: 1px solid #d4af37; padding: 8px 20px; cursor: pointer; border-radius: 20px; font-size: 14px; margin-top: 5px;">🔊 Bật / Tắt Nhạc Thiền</button>
+        </div>
+
+        <div class="wish-section">
+            <h3 style="color: #d4af37; margin-bottom: 5px;">Gửi gắm lời khấn nguyện</h3>
+            <p style="font-style: italic; font-size: 14px; color: #ccc; margin-top: 0;">
+                (Hãy viết những mong cầu thiện lành cho bản thân và gia quyến)
+            </p>
+            <textarea id="wishBox" rows="4" placeholder="Nam mô A Di Đà Phật. Con nguyện cầu..."></textarea>
+            <br>
+            <button class="act-btn" style="width: auto; padding: 10px 20px; font-size: 14px; margin-top: 10px;" onclick="guiDieuUoc()">Gửi Lời Nguyện Cầu</button>
+        </div>
+
+        <div class="qr-section">
+            <h3 style="color: #d4af37; margin-top: 0;">Gieo duyên cúng dường</h3>
+            <p style="font-size: 14px; line-height: 1.5;">Mọi sự phát tâm của quý vị sẽ giúp duy trì trang web này và một phần được gửi đến những hoàn cảnh khó khăn.</p>
+            <img src="image_3.png" alt="Mã QR Cúng Dường" class="qr-code-img">
+            <p style="font-size: 18px; margin-bottom: 5px; color: #ffcc00;"><strong>STK: 8338988888</strong></p>
+            <p style="margin-top: 0;">Ngân hàng MB</p>
+        </div>
+        
+        <p style="margin-top: 40px; font-size: 12px; color: #888;">© 2024 Ngôi Chùa Bình An Online. All rights reserved.</p>
+    </div>
+
+    <div class="modal-xam" id="xamModal">
+        <div class="xam-content">
+            <div class="xam-title" id="xamTitle">Tên Quẻ</div>
+            <div class="xam-poem" id="xamPoem">Nội dung thơ</div>
+            <div class="xam-meaning" id="xamMeaning">Lời giải</div>
+            <button class="close-btn" onclick="dongQueXam()">Chấp tay hoan hỉ</button>
+        </div>
+    </div>
+
+    <audio id="nhacNen" loop>
+        <source src="nhac-thien.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="tiengChuong">
+        <source src="chuong.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // --- CODE TẠO HOA SEN RƠI ---
+        const snowflakesContainer = document.getElementById("snowflakes");
+        const numberOfPetals = 15; 
+        for (let i = 0; i < numberOfPetals; i++) {
+            let petal = document.createElement("div");
+            petal.className = "petals";
+            petal.innerHTML = "🌸"; 
+            petal.style.left = Math.random() * 100 + "vw";
+            petal.style.animationDuration = Math.random() * 3 + 4 + "s"; 
+            petal.style.animationDelay = Math.random() * 5 + "s";
+            snowflakesContainer.appendChild(petal);
+        }
+
+        // --- DỮ LIỆU CÁC QUẺ XĂM ---
+        const danhSachXam = [
+            { ten: "Quẻ Số 1: THƯỢNG CÁT", tho: "Trời thu mây tạnh trăng tỏ ngời\nMọi việc hanh thông thuận ý trời\nCông danh tài lộc đều như nguyện\nGia đạo bình an khắp chốn vui.", giai: "Lời giải: Quẻ này rất tốt. Mọi sự mong cầu đều thuận lợi. Hãy tiếp tục làm việc thiện để giữ vững phước báu." },
+            { ten: "Quẻ Số 2: TRUNG BÌNH", tho: "Thuyền đi giữa biển sóng nhấp nhô\nGiữ vững tay chèo chớ vội lo\nSương mù rồi sẽ tan biến mất\nBến bờ phía trước đỗ bến đò.", giai: "Lời giải: Công việc hiện tại có chút thử thách hoặc chậm trễ. Khuyên bạn nên nhẫn nại, tĩnh tâm, không hấp tấp thì mọi việc sẽ êm xuôi." },
+            { ten: "Quẻ Số 3: ĐẠI CÁT", tho: "Cây khô nảy lộc đón xuân sang\nChim hót đầu cành nắng chói chang\nQuý nhân phù trợ đường quang đãng\nPhước lộc tràn trề gia đạo an.", giai: "Lời giải: Đang có thời vận rất tốt, người bệnh mau khỏi, người cầu tài đắc lộc. Lòng thành kính của bạn đã thấu đến chư Phật." },
+            { ten: "Quẻ Số 4: HẠ CÁT", tho: "Đêm đông giá rét tuyết rơi đầy\nChim chóc tìm về chốn gốc cây\nViệc lớn lúc này khuyên chớ vội\nTu tâm dưỡng tính đợi ngày mai.", giai: "Lời giải: Thời điểm này không hợp để quyết định việc lớn hay đi xa. Hãy an phận thủ thường, năng niệm Phật và phóng sinh để giải trừ nghiệp chướng." },
+            { ten: "Quẻ Số 5: TRUNG BÌNH CÁT", tho: "Gieo hạt mầm xanh xuống mảnh nương\nCông chăm tưới tẩm sớm dầm sương\nĐợi ngày đơm trái thu quả ngọt\nCó làm có hưởng thuận lẽ thường.", giai: "Lời giải: Quẻ này nhắc nhở luật Nhân Quả. Mọi nỗ lực và sự tử tế của bạn ở hiện tại chắc chắn sẽ mang lại quả ngọt trong tương lai. Hãy kiên trì." },
+            { ten: "Quẻ Số 6: HƯỚNG THIỆN", tho: "Tâm bình thế giới ắt bình an\nChớ vội bon chen chốn thế gian\nLùi lại một bước trời cao rộng\nTừ bi hỉ xả dứt sầu than.", giai: "Lời giải: Quẻ này khuyên bạn nên hạ cái tôi xuống, bớt tranh cãi thị phi. Giữ tâm tĩnh lặng thì mọi muộn phiền sẽ tự khắc tan biến." },
+            { ten: "Quẻ Số 7: CÁT TƯỜNG", tho: "Cửa Phật thênh thang đón khách vào\nLòng thành khấn nguyện thấu trời cao\nNhân duyên gõ cửa hoa đua nở\nMọi sự hanh thông đẹp biết bao.", giai: "Lời giải: Một quẻ tuyệt đẹp cho tình duyên và gia đạo. Những hiểu lầm sẽ được hóa giải, gia đình hòa thuận, êm ấm." }
+        ];
+
+        // --- CÁC HÀM XỬ LÝ ---
+        function thapNhang() {
+            document.getElementById('incense-stick').style.display = 'block';
+            var nhac = document.getElementById('nhacNen');
+            if (nhac.paused) { nhac.play().catch(e => console.log(e)); }
+            alert("Bạn đã dâng nén tâm hương. Cầu chúc gia đạo bình an, vạn sự kiết tường!");
+        }
+
+        function thinhChuong() {
+            var chuong = document.getElementById('tiengChuong');
+            chuong.currentTime = 0; // Tua lại từ đầu để nếu người dùng bấm liên tục sẽ vang liên tục
+            chuong.play().catch(e => alert("Vui lòng tương tác với trang web trước khi thỉnh chuông."));
+        }
+
+        function dieuKhienNhac() {
+            var nhac = document.getElementById('nhacNen');
+            if (nhac.paused) { nhac.play(); } else { nhac.pause(); }
+        }
+
+        function guiDieuUoc() {
+            var wish = document.getElementById('wishBox').value;
+            if (wish.trim() !== "") {
+                alert("Tâm nguyện của bạn đã được gửi gắm tới chư Phật. Hãy giữ tâm an lành và làm nhiều việc thiện.");
+                document.getElementById('wishBox').value = ""; 
+            } else {
+                alert("Vui lòng viết lời khấn nguyện của bạn trước khi gửi.");
+            }
+        }
+
+        // --- HIỆU ỨNG CHỜ GIEO QUẺ ---
+        function gieoQueXam() {
+            var btn = document.getElementById("btnGieoXam");
+            
+            btn.innerText = "🎋 Đang thành tâm thỉnh quẻ...";
+            btn.disabled = true;
+
+            setTimeout(function() {
+                var randomIndex = Math.floor(Math.random() * danhSachXam.length);
+                var queXam = danhSachXam[randomIndex];
+
+                document.getElementById('xamTitle').innerText = queXam.ten;
+                document.getElementById('xamPoem').innerText = queXam.tho;
+                document.getElementById('xamMeaning').innerText = queXam.giai;
+
+                document.getElementById('xamModal').style.display = 'flex';
+                
+                btn.innerText = "🎋 Thành Tâm Xin Xăm";
+                btn.disabled = false;
+            }, 2000); 
+        }
+
+        function dongQueXam() {
+            document.getElementById('xamModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
