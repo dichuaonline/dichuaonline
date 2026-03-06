@@ -11,6 +11,7 @@
     <meta property="og:type" content="website" />
 
     <style>
+        /* NỀN CHUNG */
         body { 
             text-align: center; 
             background-color: #1a0f05; 
@@ -29,6 +30,7 @@
             position: relative;
         }
 
+        /* ĐÈN LỒNG */
         .lantern {
             font-size: 50px; position: absolute; top: 10px;
             animation: swing 3s infinite ease-in-out alternate;
@@ -39,15 +41,30 @@
         .lantern.right { right: 5%; animation-delay: 0.5s; }
         @keyframes swing { from { transform: rotate(5deg); } to { transform: rotate(-5deg); } }
 
+        /* HOA SEN RƠI */
+        .petals {
+            position: fixed; top: -10%; z-index: 0;
+            font-size: 20px; user-select: none; pointer-events: none;
+            animation: fall linear infinite; opacity: 0.5;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg) translateX(0); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(110vh) rotate(360deg) translateX(50px); opacity: 0; }
+        }
+
         h1 { color: #ffcc00; text-shadow: 0 0 10px #ff3300, 2px 2px 4px #000; margin: 10px 0; font-size: 32px; letter-spacing: 2px;}
         h2 { color: #d4af37; text-shadow: 2px 2px 4px #000; margin: 0 0 20px 0; font-weight: normal; font-style: italic;}
         
+        /* TƯỢNG PHẬT */
         .buddha-statue {
             width: 90%; max-width: 500px; height: auto; border-radius: 15px;    
             box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); 
             z-index: 2; position: relative;            
         }
 
+        /* BÁT HƯƠNG */
         .main-altar { 
             position: relative; width: 300px; height: 120px; z-index: 3; 
             margin-top: -60px; 
@@ -59,19 +76,28 @@
             filter: drop-shadow(0 10px 10px rgba(0,0,0,0.8)); 
         }
         
+        /* HIỆU ỨNG NHANG */
         .incense-stick { 
-            position: absolute; bottom: 35px; left: 50.5%; 
+            position: absolute; bottom: 35px; left: 50%; 
             width: 30px; display: none; 
             transform-origin: bottom center; 
-            filter: drop-shadow(0 -5px 8px #ff3300);
-            animation: nhangChay 3s infinite alternate ease-in-out; 
+            /* Kết hợp cắm nhang 1s đầu, sau đó cháy lung linh mãi mãi */
+            animation: 
+                camNhang 1s ease-out forwards, 
+                nhangChay 3s 1s infinite alternate ease-in-out;
+        }
+
+        @keyframes camNhang {
+            0% { transform: translateX(-50%) translateY(-50px); opacity: 0; }
+            100% { transform: translateX(-50%) translateY(0); opacity: 1; }
         }
         
         @keyframes nhangChay {
-            0% { transform: translateX(-50%) rotate(0deg); opacity: 0.8; }
-            100% { transform: translateX(-50%) rotate(0.5deg); opacity: 1; filter: drop-shadow(0 -8px 12px #ff0000); }
+            0% { transform: translateX(-50%) rotate(0deg); filter: drop-shadow(0 -5px 8px #ff3300); opacity: 0.8; }
+            100% { transform: translateX(-50%) rotate(1deg); filter: drop-shadow(0 -10px 15px #ff0000); opacity: 1; }
         }
 
+        /* NÚT BẤM TƯƠNG TÁC */
         .button-group { display: flex; flex-direction: column; gap: 15px; align-items: center; width: 100%; z-index: 3;}
         
         button.act-btn { 
@@ -86,6 +112,7 @@
         button.act-btn.chuong-btn { background: linear-gradient(145deg, #d4af37, #a67c00); color: #333;}
         button.act-btn:disabled { opacity: 0.7; cursor: not-allowed; } 
 
+        /* KHUNG KHẤN NGUYỆN & CÚNG DƯỜNG */
         .wish-section, .qr-section, .merit-board { 
             margin-top: 30px; background: rgba(30, 15, 5, 0.85); 
             padding: 25px 20px; border-radius: 15px; width: 85%; max-width: 500px; 
@@ -94,12 +121,14 @@
         textarea { width: 90%; padding: 12px; margin-top: 10px; border-radius: 8px; border: 1px solid #d4af37; background: #fff8dc; font-family: inherit; font-size: 15px; color: #333;}
         .qr-code-img { width: 180px; border: 3px solid #d4af37; padding: 5px; background: white; margin-top: 15px; border-radius: 10px;}
 
+        /* BẢNG VÀNG CÔNG ĐỨC */
         .merit-list-container { height: 120px; overflow: hidden; position: relative; background: rgba(0, 0, 0, 0.4); border-radius: 8px; padding: 10px; border: 1px inset #d4af37; }
         .merit-list { position: absolute; width: 100%; left: 0; animation: scrollUp 25s linear infinite; }
         .merit-list-container:hover .merit-list, .merit-list-container:active .merit-list { animation-play-state: paused; }
         .merit-list p { margin: 10px 0; color: #ffcc00; font-size: 15px; font-style: italic; padding: 0 10px; line-height: 1.4; }
         @keyframes scrollUp { 0% { transform: translateY(120px); } 100% { transform: translateY(-100%); } }
 
+        /* POPUP XIN XĂM */
         .modal-xam { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 100; justify-content: center; align-items: center; }
         .xam-content { background: #fff8dc; color: #8b2500; width: 85%; max-width: 400px; padding: 30px 20px; border-radius: 10px; border: 4px double #d4af37; text-align: center; box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); position: relative; }
         .xam-title { font-size: 24px; font-weight: bold; color: #b22222; margin-bottom: 15px; border-bottom: 1px solid #d4af37; padding-bottom: 10px;}
@@ -107,18 +136,13 @@
         .xam-meaning { font-size: 15px; color: #333; font-weight: bold; background: rgba(212, 175, 55, 0.2); padding: 10px; border-radius: 5px;}
         .close-btn { margin-top: 20px; padding: 8px 20px; background: #8b2500; color: #fff; border: none; border-radius: 5px; cursor: pointer; font-size: 15px;}
         
-        /* CSS cho phần Tuyên bố miễn trừ */
-        .disclaimer-text {
-            margin-top: 40px; 
-            font-size: 13px; 
-            color: #999; 
-            padding: 0 25px; 
-            line-height: 1.5; 
-            font-style: italic;
-        }
+        /* TUYÊN BỐ MIỄN TRỪ TRÁCH NHIỆM */
+        .disclaimer-text { margin-top: 40px; font-size: 13px; color: #999; padding: 0 25px; line-height: 1.5; font-style: italic; }
     </style>
 </head>
 <body>
+    <div id="snowflakes"></div>
+
     <div class="altar-container">
         <div class="lantern left">🏮</div>
         <div class="lantern right">🏮</div>
@@ -197,6 +221,14 @@
     <audio id="tiengChuong"><source src="chuong.mp3" type="audio/mpeg"></audio>
 
     <script>
+        // HOA SEN RƠI
+        const snowflakesContainer = document.getElementById("snowflakes");
+        for (let i = 0; i < 15; i++) {
+            let petal = document.createElement("div"); petal.className = "petals"; petal.innerHTML = "🌸"; 
+            petal.style.left = Math.random() * 100 + "vw"; petal.style.animationDuration = Math.random() * 3 + 4 + "s"; petal.style.animationDelay = Math.random() * 5 + "s";
+            snowflakesContainer.appendChild(petal);
+        }
+
         const danhSachXam = [
             { ten: "Quẻ Số 1: THƯỢNG CÁT", tho: "Trời thu mây tạnh trăng tỏ ngời\nMọi việc hanh thông thuận ý trời\nCông danh tài lộc đều như nguyện\nGia đạo bình an khắp chốn vui.", giai: "Lời giải: Quẻ này rất tốt. Mọi sự mong cầu đều thuận lợi." },
             { ten: "Quẻ Số 2: TRUNG BÌNH", tho: "Thuyền đi giữa biển sóng nhấp nhô\nGiữ vững tay chèo chớ vội lo\nSương mù rồi sẽ tan biến mất\nBến bờ phía trước đỗ bến đò.", giai: "Lời giải: Công việc hiện tại có chút thử thách. Khuyên bạn nên nhẫn nại, tĩnh tâm." },
@@ -206,6 +238,7 @@
         ];
 
         function thapNhang() {
+            // Mở bát hương hiện lên với hiệu ứng cắm nhang mới
             document.getElementById('incense-stick').style.display = 'block';
             var nhac = document.getElementById('nhacNen');
             if (nhac.paused) { nhac.play().catch(e => console.log(e)); }
