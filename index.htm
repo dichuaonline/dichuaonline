@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ngôi Chùa Online - Bình An</title>
     <style>
-        /* NỀN CHUNG CỦA TRANG WEB */
+        /* NỀN TỐI GIẢN, TRẦM ẤM */
         body { 
             text-align: center; 
             background-color: #1a0f05; 
@@ -14,75 +14,88 @@
             margin: 0; 
             padding-bottom: 50px;
             overflow-x: hidden;
-            position: relative;
         }
 
-        /* KHUNG BAO QUÁT */
         .altar-container { 
             min-height: 100vh;
             display: flex; flex-direction: column; align-items: center; justify-content: start;
             padding-top: 30px;
-            background: radial-gradient(circle, rgba(82, 37, 13, 1) 0%, rgba(20, 10, 2, 1) 100%); 
+            /* Trả lại nền màu trầm, ánh sáng hắt nhẹ vào giữa trang web */
+            background: radial-gradient(circle, rgba(70, 40, 20, 1) 0%, rgba(15, 8, 3, 1) 100%); 
             position: relative;
-            z-index: 1;
         }
 
-        /* HIỆU ỨNG HOA SEN RƠI TỪ TRÊN XUỐNG */
+        /* HOA SEN RƠI */
         .petals {
             position: fixed; top: -10%; z-index: 0;
             font-size: 20px; user-select: none; pointer-events: none;
-            animation: fall linear infinite;
-            opacity: 0.6;
+            animation: fall linear infinite; opacity: 0.5;
         }
         @keyframes fall {
             0% { transform: translateY(-10vh) rotate(0deg) translateX(0); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
             100% { transform: translateY(110vh) rotate(360deg) translateX(50px); opacity: 0; }
         }
 
-        /* TRANG TRÍ ĐÈN LỒNG HAI BÊN */
         .lantern {
             font-size: 50px; position: absolute; top: 10px;
             animation: swing 3s infinite ease-in-out alternate;
             transform-origin: top center;
-            filter: drop-shadow(0 0 15px rgba(255, 50, 0, 0.8)); z-index: 10;
+            filter: drop-shadow(0 0 15px rgba(255, 50, 0, 0.6)); z-index: 10;
         }
         .lantern.left { left: 5%; }
         .lantern.right { right: 5%; animation-delay: 0.5s; }
-        
-        @keyframes swing {
-            from { transform: rotate(10deg); }
-            to { transform: rotate(-10deg); }
-        }
+        @keyframes swing { from { transform: rotate(8deg); } to { transform: rotate(-8deg); } }
 
         h1 { color: #ffcc00; text-shadow: 0 0 10px #ff3300, 2px 2px 4px #000; margin: 10px 0; font-size: 32px; letter-spacing: 2px;}
         h2 { color: #d4af37; text-shadow: 2px 2px 4px #000; margin: 0 0 20px 0; font-weight: normal; font-style: italic;}
         
-        /* ẢNH TƯỢNG PHẬT */
         .buddha-statue {
             width: 90%; max-width: 500px; height: auto; border-radius: 15px;    
-            box-shadow: 0 0 40px rgba(212, 175, 55, 0.5); 
-            margin-bottom: -30px; z-index: 2;             
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.4); 
+            margin-bottom: -40px; z-index: 2; position: relative;            
         }
 
-        /* KHUNG BÁT HƯƠNG */
-        .main-altar { position: relative; width: 300px; height: 160px; z-index: 3; margin-bottom: 30px; }
-        .bathuong { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 140px; }
+        /* --- TẬP TRUNG LÀM THẬT BÁT HƯƠNG VÀ NHANG --- */
+        .main-altar { 
+            position: relative; width: 300px; height: 160px; z-index: 3; margin-bottom: 30px;
+            /* Tạo bóng đổ cực mạnh dưới đáy để bát hương bám chặt xuống sàn, không bị lơ lửng */
+            filter: drop-shadow(0 25px 20px rgba(0,0,0,0.9));
+        }
         
-        /* HIỆU ỨNG NHANG KHÓI */
+        .bathuong { 
+            position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 150px; 
+        }
+        
         .incense-stick { 
-            position: absolute; bottom: 50px; left: 51%; transform: translateX(-50%); 
+            /* Cắm chặt nhang vào bát */
+            position: absolute; bottom: 45px; left: 50.5%; 
             width: 35px; display: none; 
-            animation: burn 2.5s infinite ease-in-out; 
+            transform-origin: bottom center; /* Lấy gốc tỏa ra từ chân cây nhang */
+            
+            /* Tạo hiệu ứng đốm lửa đỏ rực rỡ ở đầu cây nhang */
+            filter: drop-shadow(0 -8px 10px #ff3300) drop-shadow(0 0 4px #ff9900);
+            
+            /* Nhang không nảy lên xuống nữa, mà sáng bừng lên rồi dịu đi giống như đang cháy thật */
+            animation: nhangChay 3s infinite alternate ease-in-out; 
         }
-        @keyframes burn {
-            0% { opacity: 0.7; transform: translateX(-50%) translateY(0) scale(1); }
-            50% { opacity: 1; transform: translateX(-50%) translateY(-5px) scale(1.05); }
-            100% { opacity: 0.7; transform: translateX(-50%) translateY(0) scale(1); }
+        
+        @keyframes nhangChay {
+            0% { 
+                transform: translateX(-50%) rotate(0deg); 
+                filter: drop-shadow(0 -5px 5px #ff3300) drop-shadow(0 0 2px #ff9900);
+                opacity: 0.85;
+            }
+            100% { 
+                transform: translateX(-50%) rotate(0.5deg); /* Lắc lư vi diệu cực nhẹ do gió */
+                filter: drop-shadow(0 -12px 15px #ff0000) drop-shadow(0 0 6px #ffcc00); /* Lửa đỏ rực lên */
+                opacity: 1;
+            }
         }
+        /* --------------------------------------------- */
 
-        /* CỤM NÚT BẤM */
+        /* CỤM NÚT BẤM VÀ CÁC PHẦN DƯỚI GIỮ NGUYÊN BẢN CHUẨN */
         .button-group { display: flex; flex-direction: column; gap: 15px; align-items: center; width: 100%; z-index: 3;}
         
         button.act-btn { 
@@ -90,15 +103,13 @@
             background: linear-gradient(145deg, #8b2500, #5c1400); 
             color: #ffcc00; border: 2px solid #d4af37; border-radius: 30px; 
             text-transform: uppercase; font-weight: bold; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: all 0.2s; 
-            width: 80%; max-width: 300px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: all 0.2s; width: 80%; max-width: 300px;
         }
         button.act-btn:active { box-shadow: 0 1px 2px rgba(0,0,0,0.5); transform: translateY(3px); }
         button.act-btn.xam-btn { background: linear-gradient(145deg, #b8860b, #8b6508); color: #fff;}
         button.act-btn.chuong-btn { background: linear-gradient(145deg, #d4af37, #a67c00); color: #333;}
         button.act-btn:disabled { opacity: 0.7; cursor: not-allowed; } 
 
-        /* KHUNG LỜI KHẤN, QR & BẢNG VÀNG */
         .wish-section, .qr-section, .merit-board { 
             margin-top: 35px; background: rgba(30, 15, 5, 0.85); 
             padding: 25px 20px; border-radius: 15px; width: 85%; max-width: 500px; 
@@ -108,41 +119,15 @@
         .qr-code-img { width: 180px; border: 3px solid #d4af37; padding: 5px; background: white; margin-top: 15px; border-radius: 10px;}
 
         /* CSS CHO BẢNG VÀNG CÔNG ĐỨC */
-        .merit-list-container {
-            height: 120px; 
-            overflow: hidden; 
-            position: relative;
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 8px;
-            padding: 10px;
-            border: 1px inset #d4af37;
-        }
-        .merit-list {
-            position: absolute; width: 100%; left: 0;
-            animation: scrollUp 25s linear infinite; /* Đã chỉnh chậm lại thành 25 giây */
-        }
-        .merit-list-container:hover .merit-list,
-        .merit-list-container:active .merit-list {
-            animation-play-state: paused; 
-        }
-        .merit-list p {
-            margin: 10px 0; color: #ffcc00; font-size: 15px; font-style: italic; padding: 0 10px; line-height: 1.4;
-        }
-        @keyframes scrollUp {
-            0% { transform: translateY(120px); }
-            100% { transform: translateY(-100%); }
-        }
+        .merit-list-container { height: 120px; overflow: hidden; position: relative; background: rgba(0, 0, 0, 0.4); border-radius: 8px; padding: 10px; border: 1px inset #d4af37; }
+        .merit-list { position: absolute; width: 100%; left: 0; animation: scrollUp 25s linear infinite; }
+        .merit-list-container:hover .merit-list, .merit-list-container:active .merit-list { animation-play-state: paused; }
+        .merit-list p { margin: 10px 0; color: #ffcc00; font-size: 15px; font-style: italic; padding: 0 10px; line-height: 1.4; }
+        @keyframes scrollUp { 0% { transform: translateY(120px); } 100% { transform: translateY(-100%); } }
 
         /* POPUP HIỂN THỊ QUẺ XĂM */
-        .modal-xam {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8); z-index: 100; justify-content: center; align-items: center;
-        }
-        .xam-content {
-            background: #fff8dc; color: #8b2500; width: 85%; max-width: 400px; padding: 30px 20px;
-            border-radius: 10px; border: 4px double #d4af37; text-align: center;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); position: relative;
-        }
+        .modal-xam { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 100; justify-content: center; align-items: center; }
+        .xam-content { background: #fff8dc; color: #8b2500; width: 85%; max-width: 400px; padding: 30px 20px; border-radius: 10px; border: 4px double #d4af37; text-align: center; box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); position: relative; }
         .xam-title { font-size: 24px; font-weight: bold; color: #b22222; margin-bottom: 15px; border-bottom: 1px solid #d4af37; padding-bottom: 10px;}
         .xam-poem { font-style: italic; font-size: 16px; margin-bottom: 15px; white-space: pre-line; line-height: 1.5;}
         .xam-meaning { font-size: 15px; color: #333; font-weight: bold; background: rgba(212, 175, 55, 0.2); padding: 10px; border-radius: 5px;}
@@ -176,9 +161,7 @@
 
         <div class="wish-section">
             <h3 style="color: #d4af37; margin-bottom: 5px;">Gửi gắm lời khấn nguyện</h3>
-            <p style="font-style: italic; font-size: 14px; color: #ccc; margin-top: 0;">
-                (Hãy viết những mong cầu thiện lành cho bản thân và gia quyến)
-            </p>
+            <p style="font-style: italic; font-size: 14px; color: #ccc; margin-top: 0;">(Hãy viết những mong cầu thiện lành cho bản thân và gia quyến)</p>
             <textarea id="wishBox" rows="4" placeholder="Nam mô A Di Đà Phật. Con nguyện cầu..."></textarea>
             <br>
             <button class="act-btn" style="width: auto; padding: 10px 20px; font-size: 14px; margin-top: 10px;" onclick="guiDieuUoc()">Gửi Lời Nguyện Cầu</button>
@@ -225,47 +208,33 @@
         </div>
     </div>
 
-    <audio id="nhacNen" loop>
-        <source src="nhac-thien.mp3" type="audio/mpeg">
-    </audio>
-
-    <audio id="tiengChuong">
-        <source src="chuong.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="nhacNen" loop><source src="nhac-thien.mp3" type="audio/mpeg"></audio>
+    <audio id="tiengChuong"><source src="chuong.mp3" type="audio/mpeg"></audio>
 
     <script>
         const snowflakesContainer = document.getElementById("snowflakes");
-        const numberOfPetals = 15; 
-        for (let i = 0; i < numberOfPetals; i++) {
-            let petal = document.createElement("div");
-            petal.className = "petals";
-            petal.innerHTML = "🌸"; 
-            petal.style.left = Math.random() * 100 + "vw";
-            petal.style.animationDuration = Math.random() * 3 + 4 + "s"; 
-            petal.style.animationDelay = Math.random() * 5 + "s";
+        for (let i = 0; i < 15; i++) {
+            let petal = document.createElement("div"); petal.className = "petals"; petal.innerHTML = "🌸"; 
+            petal.style.left = Math.random() * 100 + "vw"; petal.style.animationDuration = Math.random() * 3 + 4 + "s"; petal.style.animationDelay = Math.random() * 5 + "s";
             snowflakesContainer.appendChild(petal);
         }
 
         const danhSachXam = [
-            { ten: "Quẻ Số 1: THƯỢNG CÁT", tho: "Trời thu mây tạnh trăng tỏ ngời\nMọi việc hanh thông thuận ý trời\nCông danh tài lộc đều như nguyện\nGia đạo bình an khắp chốn vui.", giai: "Lời giải: Quẻ này rất tốt. Mọi sự mong cầu đều thuận lợi. Hãy tiếp tục làm việc thiện để giữ vững phước báu." },
-            { ten: "Quẻ Số 2: TRUNG BÌNH", tho: "Thuyền đi giữa biển sóng nhấp nhô\nGiữ vững tay chèo chớ vội lo\nSương mù rồi sẽ tan biến mất\nBến bờ phía trước đỗ bến đò.", giai: "Lời giải: Công việc hiện tại có chút thử thách hoặc chậm trễ. Khuyên bạn nên nhẫn nại, tĩnh tâm, không hấp tấp thì mọi việc sẽ êm xuôi." },
-            { ten: "Quẻ Số 3: ĐẠI CÁT", tho: "Cây khô nảy lộc đón xuân sang\nChim hót đầu cành nắng chói chang\nQuý nhân phù trợ đường quang đãng\nPhước lộc tràn trề gia đạo an.", giai: "Lời giải: Đang có thời vận rất tốt, người bệnh mau khỏi, người cầu tài đắc lộc. Lòng thành kính của bạn đã thấu đến chư Phật." },
-            { ten: "Quẻ Số 4: HẠ CÁT", tho: "Đêm đông giá rét tuyết rơi đầy\nChim chóc tìm về chốn gốc cây\nViệc lớn lúc này khuyên chớ vội\nTu tâm dưỡng tính đợi ngày mai.", giai: "Lời giải: Thời điểm này không hợp để quyết định việc lớn hay đi xa. Hãy an phận thủ thường, năng niệm Phật và phóng sinh để giải trừ nghiệp chướng." },
-            { ten: "Quẻ Số 5: TRUNG BÌNH CÁT", tho: "Gieo hạt mầm xanh xuống mảnh nương\nCông chăm tưới tẩm sớm dầm sương\nĐợi ngày đơm trái thu quả ngọt\nCó làm có hưởng thuận lẽ thường.", giai: "Lời giải: Quẻ này nhắc nhở luật Nhân Quả. Mọi nỗ lực và sự tử tế của bạn ở hiện tại chắc chắn sẽ mang lại quả ngọt trong tương lai. Hãy kiên trì." },
-            { ten: "Quẻ Số 6: HƯỚNG THIỆN", tho: "Tâm bình thế giới ắt bình an\nChớ vội bon chen chốn thế gian\nLùi lại một bước trời cao rộng\nTừ bi hỉ xả dứt sầu than.", giai: "Lời giải: Quẻ này khuyên bạn nên hạ cái tôi xuống, bớt tranh cãi thị phi. Giữ tâm tĩnh lặng thì mọi muộn phiền sẽ tự khắc tan biến." },
-            { ten: "Quẻ Số 7: CÁT TƯỜNG", tho: "Cửa Phật thênh thang đón khách vào\nLòng thành khấn nguyện thấu trời cao\nNhân duyên gõ cửa hoa đua nở\nMọi sự hanh thông đẹp biết bao.", giai: "Lời giải: Một quẻ tuyệt đẹp cho tình duyên và gia đạo. Những hiểu lầm sẽ được hóa giải, gia đình hòa thuận, êm ấm." }
+            { ten: "Quẻ Số 1: THƯỢNG CÁT", tho: "Trời thu mây tạnh trăng tỏ ngời\nMọi việc hanh thông thuận ý trời\nCông danh tài lộc đều như nguyện\nGia đạo bình an khắp chốn vui.", giai: "Lời giải: Quẻ này rất tốt. Mọi sự mong cầu đều thuận lợi." },
+            { ten: "Quẻ Số 2: TRUNG BÌNH", tho: "Thuyền đi giữa biển sóng nhấp nhô\nGiữ vững tay chèo chớ vội lo\nSương mù rồi sẽ tan biến mất\nBến bờ phía trước đỗ bến đò.", giai: "Lời giải: Công việc hiện tại có chút thử thách. Khuyên bạn nên nhẫn nại, tĩnh tâm." },
+            { ten: "Quẻ Số 3: ĐẠI CÁT", tho: "Cây khô nảy lộc đón xuân sang\nChim hót đầu cành nắng chói chang\nQuý nhân phù trợ đường quang đãng\nPhước lộc tràn trề gia đạo an.", giai: "Lời giải: Đang có thời vận rất tốt. Lòng thành kính của bạn đã thấu đến chư Phật." },
+            { ten: "Quẻ Số 4: HẠ CÁT", tho: "Đêm đông giá rét tuyết rơi đầy\nChim chóc tìm về chốn gốc cây\nViệc lớn lúc này khuyên chớ vội\nTu tâm dưỡng tính đợi ngày mai.", giai: "Lời giải: Thời điểm này không hợp để quyết định việc lớn hay đi xa. Hãy an phận thủ thường." },
+            { ten: "Quẻ Số 5: TRUNG BÌNH CÁT", tho: "Gieo hạt mầm xanh xuống mảnh nương\nCông chăm tưới tẩm sớm dầm sương\nĐợi ngày đơm trái thu quả ngọt\nCó làm có hưởng thuận lẽ thường.", giai: "Lời giải: Mọi nỗ lực và sự tử tế của bạn ở hiện tại chắc chắn sẽ mang lại quả ngọt trong tương lai." }
         ];
 
         function thapNhang() {
             document.getElementById('incense-stick').style.display = 'block';
             var nhac = document.getElementById('nhacNen');
             if (nhac.paused) { nhac.play().catch(e => console.log(e)); }
-            alert("Bạn đã dâng nén tâm hương. Cầu chúc gia đạo bình an, vạn sự kiết tường!");
         }
 
         function thinhChuong() {
-            var chuong = document.getElementById('tiengChuong');
-            chuong.currentTime = 0; 
+            var chuong = document.getElementById('tiengChuong'); chuong.currentTime = 0; 
             chuong.play().catch(e => alert("Vui lòng tương tác với trang web trước khi thỉnh chuông."));
         }
 
@@ -277,37 +246,22 @@
         function guiDieuUoc() {
             var wish = document.getElementById('wishBox').value;
             if (wish.trim() !== "") {
-                alert("Tâm nguyện của bạn đã được gửi gắm tới chư Phật. Hãy giữ tâm an lành và làm nhiều việc thiện.");
-                document.getElementById('wishBox').value = ""; 
-            } else {
-                alert("Vui lòng viết lời khấn nguyện của bạn trước khi gửi.");
-            }
+                alert("Tâm nguyện của bạn đã được gửi gắm tới chư Phật. Hãy giữ tâm an lành và làm nhiều việc thiện."); document.getElementById('wishBox').value = ""; 
+            } else { alert("Vui lòng viết lời khấn nguyện của bạn trước khi gửi."); }
         }
 
         function gieoQueXam() {
             var btn = document.getElementById("btnGieoXam");
-            
-            btn.innerText = "🎋 Đang thành tâm thỉnh quẻ...";
-            btn.disabled = true;
-
+            btn.innerText = "🎋 Đang thành tâm thỉnh quẻ..."; btn.disabled = true;
             setTimeout(function() {
-                var randomIndex = Math.floor(Math.random() * danhSachXam.length);
-                var queXam = danhSachXam[randomIndex];
-
-                document.getElementById('xamTitle').innerText = queXam.ten;
-                document.getElementById('xamPoem').innerText = queXam.tho;
-                document.getElementById('xamMeaning').innerText = queXam.giai;
-
+                var randomIndex = Math.floor(Math.random() * danhSachXam.length); var queXam = danhSachXam[randomIndex];
+                document.getElementById('xamTitle').innerText = queXam.ten; document.getElementById('xamPoem').innerText = queXam.tho; document.getElementById('xamMeaning').innerText = queXam.giai;
                 document.getElementById('xamModal').style.display = 'flex';
-                
-                btn.innerText = "🎋 Thành Tâm Xin Xăm";
-                btn.disabled = false;
+                btn.innerText = "🎋 Thành Tâm Xin Xăm"; btn.disabled = false;
             }, 2000); 
         }
 
-        function dongQueXam() {
-            document.getElementById('xamModal').style.display = 'none';
-        }
+        function dongQueXam() { document.getElementById('xamModal').style.display = 'none'; }
     </script>
 </body>
 </html>
