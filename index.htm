@@ -95,20 +95,43 @@
         }
         button.act-btn:active { box-shadow: 0 1px 2px rgba(0,0,0,0.5); transform: translateY(3px); }
         button.act-btn.xam-btn { background: linear-gradient(145deg, #b8860b, #8b6508); color: #fff;}
-        
-        /* NÚT THỈNH CHUÔNG (MÀU ĐỒNG VÀNG) */
         button.act-btn.chuong-btn { background: linear-gradient(145deg, #d4af37, #a67c00); color: #333;}
-        
         button.act-btn:disabled { opacity: 0.7; cursor: not-allowed; } 
 
-        /* KHUNG LỜI KHẤN & QR */
-        .wish-section, .qr-section { 
+        /* KHUNG LỜI KHẤN, QR & BẢNG VÀNG */
+        .wish-section, .qr-section, .merit-board { 
             margin-top: 35px; background: rgba(30, 15, 5, 0.85); 
             padding: 25px 20px; border-radius: 15px; width: 85%; max-width: 500px; 
             border: 1px solid #d4af37; box-shadow: 0 10px 20px rgba(0,0,0,0.5); z-index: 3;
         }
         textarea { width: 90%; padding: 12px; margin-top: 10px; border-radius: 8px; border: 1px solid #d4af37; background: #fff8dc; font-family: inherit; font-size: 15px; color: #333;}
         .qr-code-img { width: 180px; border: 3px solid #d4af37; padding: 5px; background: white; margin-top: 15px; border-radius: 10px;}
+
+        /* CSS CHO BẢNG VÀNG CÔNG ĐỨC */
+        .merit-list-container {
+            height: 120px; 
+            overflow: hidden; 
+            position: relative;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 8px;
+            padding: 10px;
+            border: 1px inset #d4af37;
+        }
+        .merit-list {
+            position: absolute; width: 100%; left: 0;
+            animation: scrollUp 25s linear infinite; /* Đã chỉnh chậm lại thành 25 giây */
+        }
+        .merit-list-container:hover .merit-list,
+        .merit-list-container:active .merit-list {
+            animation-play-state: paused; 
+        }
+        .merit-list p {
+            margin: 10px 0; color: #ffcc00; font-size: 15px; font-style: italic; padding: 0 10px; line-height: 1.4;
+        }
+        @keyframes scrollUp {
+            0% { transform: translateY(120px); }
+            100% { transform: translateY(-100%); }
+        }
 
         /* POPUP HIỂN THỊ QUẺ XĂM */
         .modal-xam {
@@ -168,6 +191,27 @@
             <p style="font-size: 18px; margin-bottom: 5px; color: #ffcc00;"><strong>STK: 8338988888</strong></p>
             <p style="margin-top: 0;">Ngân hàng MB</p>
         </div>
+
+        <div class="merit-board">
+            <h3 style="color: #d4af37; margin-top: 0; margin-bottom: 15px;">📜 Sổ Vàng Gieo Duyên</h3>
+            <div class="merit-list-container">
+                <div class="merit-list" id="meritList">
+                    <p>🌸 Gia đình Phật tử Diệu Âm - Phát tâm cúng dường</p>
+                    <p>🌸 Ngô Nhật Minh - Gieo duyên cầu gia đạo bình an</p>
+                    <p>🌸 Trần Thị Mai - Hồi hướng công đức cho bá tánh</p>
+                    <p>🌸 Nguyễn Văn An - Nguyện cầu sức khỏe cho cha mẹ</p>
+                    <p>🌸 Phật tử Thiện Tâm - Cầu quốc thái dân an, thế giới hòa bình</p>
+                    <p>🌸 Gia đình Lê Hoàng - Mong tiêu trừ nghiệp chướng, vạn sự hanh thông</p>
+                    <p>🌸 Huỳnh Ngọc Bích - Gieo duyên Tam Bảo, cầu trí tuệ sáng suốt</p>
+                    <p>🌸 Phan Trọng Tín - Nguyện cầu siêu độ cho cửu huyền thất tổ</p>
+                    <p>🌸 Cháu bé Tuệ Lâm - Ba mẹ cầu bình an, vô bệnh vô tật</p>
+                    <p>🌸 Ẩn danh - Tùy hỷ công đức, mong gia đạo kiết tường</p>
+                    <p>🌸 Vũ Thị Hương - Cầu mong mưa thuận gió hòa, làm ăn chân chính</p>
+                    <p>🌸 Phật tử Liên Hoa - Nguyện một đời sống tốt đời đẹp đạo</p>
+                </div>
+            </div>
+            <p style="font-size: 12px; color: #aaa; margin-top: 10px; margin-bottom: 0;">(Chạm vào danh sách để tạm dừng)</p>
+        </div>
         
         <p style="margin-top: 40px; font-size: 12px; color: #888;">© 2024 Ngôi Chùa Bình An Online. All rights reserved.</p>
     </div>
@@ -190,7 +234,6 @@
     </audio>
 
     <script>
-        // --- CODE TẠO HOA SEN RƠI ---
         const snowflakesContainer = document.getElementById("snowflakes");
         const numberOfPetals = 15; 
         for (let i = 0; i < numberOfPetals; i++) {
@@ -203,7 +246,6 @@
             snowflakesContainer.appendChild(petal);
         }
 
-        // --- DỮ LIỆU CÁC QUẺ XĂM ---
         const danhSachXam = [
             { ten: "Quẻ Số 1: THƯỢNG CÁT", tho: "Trời thu mây tạnh trăng tỏ ngời\nMọi việc hanh thông thuận ý trời\nCông danh tài lộc đều như nguyện\nGia đạo bình an khắp chốn vui.", giai: "Lời giải: Quẻ này rất tốt. Mọi sự mong cầu đều thuận lợi. Hãy tiếp tục làm việc thiện để giữ vững phước báu." },
             { ten: "Quẻ Số 2: TRUNG BÌNH", tho: "Thuyền đi giữa biển sóng nhấp nhô\nGiữ vững tay chèo chớ vội lo\nSương mù rồi sẽ tan biến mất\nBến bờ phía trước đỗ bến đò.", giai: "Lời giải: Công việc hiện tại có chút thử thách hoặc chậm trễ. Khuyên bạn nên nhẫn nại, tĩnh tâm, không hấp tấp thì mọi việc sẽ êm xuôi." },
@@ -214,7 +256,6 @@
             { ten: "Quẻ Số 7: CÁT TƯỜNG", tho: "Cửa Phật thênh thang đón khách vào\nLòng thành khấn nguyện thấu trời cao\nNhân duyên gõ cửa hoa đua nở\nMọi sự hanh thông đẹp biết bao.", giai: "Lời giải: Một quẻ tuyệt đẹp cho tình duyên và gia đạo. Những hiểu lầm sẽ được hóa giải, gia đình hòa thuận, êm ấm." }
         ];
 
-        // --- CÁC HÀM XỬ LÝ ---
         function thapNhang() {
             document.getElementById('incense-stick').style.display = 'block';
             var nhac = document.getElementById('nhacNen');
@@ -224,7 +265,7 @@
 
         function thinhChuong() {
             var chuong = document.getElementById('tiengChuong');
-            chuong.currentTime = 0; // Tua lại từ đầu để nếu người dùng bấm liên tục sẽ vang liên tục
+            chuong.currentTime = 0; 
             chuong.play().catch(e => alert("Vui lòng tương tác với trang web trước khi thỉnh chuông."));
         }
 
@@ -243,7 +284,6 @@
             }
         }
 
-        // --- HIỆU ỨNG CHỜ GIEO QUẺ ---
         function gieoQueXam() {
             var btn = document.getElementById("btnGieoXam");
             
