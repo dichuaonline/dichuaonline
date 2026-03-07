@@ -76,25 +76,27 @@
             filter: drop-shadow(0 10px 10px rgba(0,0,0,0.8)); 
         }
         
-        /* HIỆU ỨNG NHANG */
+        /* HIỆU ỨNG NHANG (Đã phóng to gấp 3 lần) */
         .incense-stick { 
-            position: absolute; bottom: 35px; left: 50%; 
-            width: 30px; display: none; 
+            position: absolute; 
+            bottom: 45px; 
+            left: 50%; 
+            width: 90px; 
+            display: none; 
             transform-origin: bottom center; 
-            /* Kết hợp cắm nhang 1s đầu, sau đó cháy lung linh mãi mãi */
             animation: 
                 camNhang 1s ease-out forwards, 
                 nhangChay 3s 1s infinite alternate ease-in-out;
         }
 
         @keyframes camNhang {
-            0% { transform: translateX(-50%) translateY(-50px); opacity: 0; }
+            0% { transform: translateX(-50%) translateY(-100px); opacity: 0; }
             100% { transform: translateX(-50%) translateY(0); opacity: 1; }
         }
         
         @keyframes nhangChay {
-            0% { transform: translateX(-50%) rotate(0deg); filter: drop-shadow(0 -5px 8px #ff3300); opacity: 0.8; }
-            100% { transform: translateX(-50%) rotate(1deg); filter: drop-shadow(0 -10px 15px #ff0000); opacity: 1; }
+            0% { transform: translateX(-50%) rotate(0deg); filter: drop-shadow(0 -10px 15px #ff3300); opacity: 0.8; }
+            100% { transform: translateX(-50%) rotate(1deg); filter: drop-shadow(0 -20px 25px #ff0000); opacity: 1; }
         }
 
         /* NÚT BẤM TƯƠNG TÁC */
@@ -276,4 +278,3 @@
     </script>
 </body>
 </html>
-
