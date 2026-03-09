@@ -25,7 +25,6 @@
         h1 { color: #ffcc00; text-shadow: 0 0 10px #ff3300, 2px 2px 4px #000; margin: 10px 0; font-size: 32px; letter-spacing: 2px;}
         h2 { color: #d4af37; text-shadow: 2px 2px 4px #000; margin: 0 0 10px 0; font-weight: normal; font-style: italic;}
         
-        /* KHU VỰC LỜI PHẬT DẠY & LỊCH ÂM */
         .daily-quote-box { background: rgba(30, 15, 5, 0.6); padding: 10px 20px; border-radius: 10px; width: 85%; max-width: 450px; margin-bottom: 20px; border: 1px dotted #d4af37; z-index: 3;}
         .lunar-date { color: #ffcc00; font-weight: bold; font-size: 14px; margin: 0 0 5px 0; text-transform: uppercase;}
         .quote-text { font-style: italic; color: #eee; font-size: 15px; margin: 0; line-height: 1.4;}
@@ -35,21 +34,17 @@
         .main-altar { position: relative; width: 300px; height: 120px; z-index: 3; margin-top: -60px; margin-bottom: 20px; }
         .bathuong { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 140px; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.8)); z-index: 4;}
         
-        /* CÂY NHANG TO GẤP 3 */
         .incense-stick { position: absolute; bottom: 45px; left: 50%; width: 90px; display: none; transform-origin: bottom center; animation: camNhang 1s ease-out forwards, nhangChay 3s 1s infinite alternate ease-in-out; z-index: 3;}
         @keyframes camNhang { 0% { transform: translateX(-50%) translateY(-100px); opacity: 0; } 100% { transform: translateX(-50%) translateY(0); opacity: 1; } }
         @keyframes nhangChay { 0% { transform: translateX(-50%) rotate(0deg); filter: drop-shadow(0 -10px 15px #ff3300); opacity: 0.8; } 100% { transform: translateX(-50%) rotate(1deg); filter: drop-shadow(0 -20px 25px #ff0000); opacity: 1; } }
 
-        /* KHU VỰC THẮP NẾN */
         .candle-container { position: absolute; bottom: -10px; width: 100%; display: flex; justify-content: center; gap: 10px; z-index: 5;}
         .lotus-candle { font-size: 25px; filter: drop-shadow(0 -5px 10px #ff9900); animation: flicker 1.5s infinite alternate; }
         @keyframes flicker { 0% { opacity: 0.8; transform: scale(0.95); } 100% { opacity: 1; transform: scale(1.05); } }
 
-        /* HIỆU ỨNG PHÓNG SINH CHIM BAY */
         .bird { position: fixed; bottom: 0; font-size: 30px; z-index: 100; pointer-events: none; animation: flyUp 4s ease-in forwards; opacity: 0; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.5));}
         @keyframes flyUp { 0% { transform: translateY(0) scale(0.5) translateX(0); opacity: 1; } 100% { transform: translateY(-120vh) scale(1.5) translateX(100px); opacity: 0; } }
 
-        /* LƯỚI NÚT BẤM GỌN GÀNG */
         .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 90%; max-width: 450px; z-index: 3; margin-top: 10px;}
         button.act-btn { padding: 12px 10px; font-size: 14px; cursor: pointer; background: linear-gradient(145deg, #8b2500, #5c1400); color: #ffcc00; border: 1px solid #d4af37; border-radius: 10px; text-transform: uppercase; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.4); transition: all 0.2s; }
         button.act-btn:active { box-shadow: 0 1px 2px rgba(0,0,0,0.5); transform: translateY(3px); }
@@ -59,9 +54,8 @@
         .phongsinh-btn { background: linear-gradient(145deg, #1e90ff, #0000cd) !important; color: #fff !important;}
         .chepkinh-btn { background: linear-gradient(145deg, #4b0082, #2c004e) !important; color: #fff !important;}
         
-        /* CÁC SECTION CŨ */
         .wish-section, .qr-section, .merit-board { margin-top: 25px; background: rgba(30, 15, 5, 0.85); padding: 25px 20px; border-radius: 15px; width: 85%; max-width: 500px; border: 1px solid #d4af37; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 3;}
-        textarea, input[type="text"] { width: 90%; padding: 12px; margin-top: 10px; border-radius: 8px; border: 1px solid #d4af37; background: #fff8dc; font-family: inherit; font-size: 15px; color: #333;}
+        textarea, input[type="text"] { width: 90%; padding: 12px; margin-top: 10px; border-radius: 8px; border: 1px solid #d4af37; background: #fff8dc; font-family: inherit; font-size: 15px; color: #333; outline: none;}
         .qr-code-img { width: 180px; border: 3px solid #d4af37; padding: 5px; background: white; margin-top: 15px; border-radius: 10px;}
 
         .merit-list-container { height: 120px; overflow: hidden; position: relative; background: rgba(0, 0, 0, 0.4); border-radius: 8px; padding: 10px; border: 1px inset #d4af37; }
@@ -70,13 +64,11 @@
         .merit-list p { margin: 10px 0; color: #ffcc00; font-size: 15px; font-style: italic; padding: 0 10px; line-height: 1.4; }
         @keyframes scrollUp { 0% { transform: translateY(120px); } 100% { transform: translateY(-100%); } }
 
-        /* MODAL CHUNG CHO XĂM VÀ CHÉP KINH */
         .modal-box { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 100; justify-content: center; align-items: center; }
         .modal-content { background: #fff8dc; color: #8b2500; width: 85%; max-width: 400px; padding: 30px 20px; border-radius: 10px; border: 4px double #d4af37; text-align: center; box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); position: relative; }
         .close-btn { margin-top: 20px; padding: 8px 20px; background: #8b2500; color: #fff; border: none; border-radius: 5px; cursor: pointer; font-size: 15px; text-transform: uppercase; font-weight: bold;}
         
-        /* RIÊNG CHÉP KINH */
-        .kinh-target { font-size: 18px; font-weight: bold; margin: 15px 0; color: #4b0082; background: rgba(212, 175, 55, 0.2); padding: 10px; border-radius: 5px; pointer-events: none; user-select: none;}
+        .kinh-target { font-size: 18px; font-weight: bold; margin: 10px 0; color: #4b0082; background: rgba(212, 175, 55, 0.2); padding: 15px 10px; border-radius: 5px; pointer-events: none; user-select: none; transition: all 0.3s;}
 
         .disclaimer-text { margin-top: 40px; font-size: 13px; color: #999; padding: 0 25px; line-height: 1.5; font-style: italic; }
     </style>
@@ -160,9 +152,10 @@
     <div class="modal-box" id="kinhModal">
         <div class="modal-content">
             <h3 style="color: #b22222; margin-top: 0;">Góc Chép Kinh Tĩnh Tâm</h3>
-            <p style="font-size: 14px; color: #555;">Hãy giữ tâm thanh tịnh và gõ lại chính xác dòng chú dưới đây (Bao gồm cả viết hoa và dấu):</p>
-            <div class="kinh-target" id="kinhTarget">Nam mô Đại bi Quán Thế Âm Bồ Tát</div>
-            <input type="text" id="kinhInput" placeholder="Gõ lại dòng chữ trên vào đây..." oninput="kiemTraChepKinh()">
+            <div id="kinhProgress" style="font-size: 13px; color: #8b2500; font-weight: bold; text-transform: uppercase;">Câu 1/5</div>
+            <div class="kinh-target" id="kinhTarget">Nam mô A Di Đà Phật</div>
+            <input type="text" id="kinhInput" placeholder="Gõ lại câu trên rồi bấm Enter..." oninput="kiemTraChepKinh()" onkeypress="xuLyEnterKinh(event)">
+            <div id="kinhThongBao" style="height: 20px; font-size: 14px; color: #2e8b57; margin-top: 10px; font-style: italic; font-weight: bold;"></div>
             <br>
             <button class="close-btn" onclick="dongChepKinh()">Đóng Lại</button>
         </div>
@@ -172,89 +165,118 @@
     <audio id="tiengChuong"><source src="chuong.mp3" type="audio/mpeg"></audio>
 
     <script>
-        // 1. TỰ ĐỘNG TÍNH LỊCH ÂM & LỜI DẠY (Dùng thủ thuật Native API không cần thư viện ngoài)
         function capNhatLichVaLoiDay() {
             try {
-                // Lấy ngày âm lịch của hệ thống
                 const formatter = new Intl.DateTimeFormat('vi-VN-u-ca-chinese', { day: 'numeric', month: 'numeric' });
                 const parts = formatter.formatToParts(new Date());
                 const amLichDay = parts.find(p => p.type === 'day')?.value;
                 const amLichMonth = parts.find(p => p.type === 'month')?.value;
-                
                 let textHienThi = `Hôm nay: Mùng ${amLichDay} Tháng ${amLichMonth} (Âm lịch)`;
-                
-                // Cảnh báo ngày rằm mùng 1
-                if (amLichDay == "1" || amLichDay == "15") {
-                    textHienThi += " 🌸 Lời nhắc: Hôm nay ngày chay tịnh.";
-                }
+                if (amLichDay == "1" || amLichDay == "15") textHienThi += " 🌸 Lời nhắc: Hôm nay ngày chay tịnh.";
                 document.getElementById("lunarDate").innerText = textHienThi;
             } catch (e) { document.getElementById("lunarDate").innerText = "Hãy giữ tâm bình an mỗi ngày."; }
 
-            // Lời Phật dạy ngẫu nhiên
             const quotes = [
                 "Tâm bình thế giới bình, tâm an vạn sự an.",
                 "Sở dĩ người ta đau khổ chính vì đeo đuổi những thứ sai lầm.",
-                "Hàng ngàn ngọn nến có thể được thắp sáng bởi một ngọn nến, và cuộc đời của ngọn nến ấy không hề bị tàn lụi. Hạnh phúc không bao giờ cạn đi khi ta biết sẻ chia.",
+                "Hàng ngàn ngọn nến có thể được thắp sáng bởi một ngọn nến, hạnh phúc không bao giờ cạn đi khi ta biết sẻ chia.",
                 "Bình yên đến từ bên trong. Đừng tìm nó ở bên ngoài.",
                 "Nhân quả không nợ ai bao giờ, gieo nhân thiện ắt gặt quả lành."
             ];
             document.getElementById("dailyQuote").innerText = '"' + quotes[Math.floor(Math.random() * quotes.length)] + '"';
         }
-        capNhatLichVaLoiDay(); // Chạy ngay khi mở web
+        capNhatLichVaLoiDay(); 
 
-        // 2. TÍNH NĂNG THẮP NẾN
         let soNen = 0;
         function thapNen() {
             if (soNen >= 5) { alert("Bàn thờ đã sáng rực rỡ rồi, bạn không cần thắp thêm nữa nhé."); return; }
-            let nen = document.createElement("div");
-            nen.className = "lotus-candle";
-            nen.innerHTML = "🪷🔥"; 
-            document.getElementById("candleContainer").appendChild(nen);
-            soNen++;
+            let nen = document.createElement("div"); nen.className = "lotus-candle"; nen.innerHTML = "🪷🔥"; 
+            document.getElementById("candleContainer").appendChild(nen); soNen++;
         }
 
-        // 3. TÍNH NĂNG PHÓNG SINH CHIM
         function phongSinh() {
             var nhac = document.getElementById('nhacNen'); if (nhac.paused) { nhac.play().catch(e=>console.log(e)); }
-            
             for (let i = 0; i < 7; i++) {
                 setTimeout(() => {
-                    let bird = document.createElement("div");
-                    bird.className = "bird";
-                    bird.innerHTML = "🕊️";
-                    // Chim xuất hiện ngẫu nhiên dọc cạnh dưới màn hình
-                    bird.style.left = Math.random() * 80 + 10 + "vw";
-                    bird.style.animationDuration = Math.random() * 2 + 3 + "s"; // Bay 3-5 giây
+                    let bird = document.createElement("div"); bird.className = "bird"; bird.innerHTML = "🕊️";
+                    bird.style.left = Math.random() * 80 + 10 + "vw"; bird.style.animationDuration = Math.random() * 2 + 3 + "s"; 
                     document.body.appendChild(bird);
-                    
-                    // Xóa chim sau khi bay xong để không nặng web
                     setTimeout(() => { bird.remove(); }, 5000);
-                }, i * 300); // Chim bay ra liên tiếp cách nhau 0.3s
+                }, i * 300); 
             }
             alert("Công đức vô lượng! Những chú chim đã được tự do trở về với bầu trời.");
         }
 
-        // 4. TÍNH NĂNG CHÉP KINH
-        const cauChu = "Nam mô Đại bi Quán Thế Âm Bồ Tát";
+        // TÍNH NĂNG CHÉP KINH NÂNG CẤP
+        const danhSachKinh = [
+            "Nam mô A Di Đà Phật",
+            "Nam mô Đại bi Quán Thế Âm Bồ Tát",
+            "Nam mô Đại Thế Chí Bồ Tát",
+            "Nam mô Địa Tạng Vương Bồ Tát",
+            "Tâm bình thế giới bình, tâm an vạn sự an"
+        ];
+        let currentKinhIndex = 0;
+        let dangChuyenCau = false;
+
         function moChepKinh() {
-            document.getElementById('kinhInput').value = ""; // Xóa trắng ô gõ
-            document.getElementById('kinhInput').style.backgroundColor = "#fff8dc";
+            currentKinhIndex = 0;
+            document.getElementById('kinhInput').style.display = 'block';
+            hienThiCauKinh();
             document.getElementById('kinhModal').style.display = 'flex';
         }
+
         function dongChepKinh() { document.getElementById('kinhModal').style.display = 'none'; }
         
-        function kiemTraChepKinh() {
-            let input = document.getElementById('kinhInput');
-            if (input.value === cauChu) {
-                input.style.backgroundColor = "#d4edda"; // Đổi màu xanh lá
-                setTimeout(() => {
-                    alert("Hoan hỉ! Bạn đã chép xong câu chú với tâm thanh tịnh. Chúc bạn vạn sự bình an.");
-                    dongChepKinh();
-                }, 300);
+        function hienThiCauKinh() {
+            dangChuyenCau = false;
+            if (currentKinhIndex < danhSachKinh.length) {
+                document.getElementById('kinhProgress').innerText = `Câu ${currentKinhIndex + 1} / ${danhSachKinh.length}`;
+                document.getElementById('kinhTarget').innerText = danhSachKinh[currentKinhIndex];
+                let input = document.getElementById('kinhInput');
+                input.value = "";
+                input.style.backgroundColor = "#fff8dc";
+                document.getElementById('kinhThongBao').innerText = "";
+                input.focus();
+            } else {
+                // Đã chép xong trọn vẹn
+                document.getElementById('kinhProgress').innerText = "Hoàn thành viên mãn";
+                document.getElementById('kinhTarget').innerText = "🙏 Công đức vô lượng 🙏";
+                document.getElementById('kinhInput').style.display = 'none';
+                document.getElementById('kinhThongBao').innerText = "Bạn đã hoàn thành thời khóa chép kinh hôm nay!";
+                
+                // Tự động thỉnh 1 tiếng chuông chúc mừng
+                var chuong = document.getElementById('tiengChuong');
+                chuong.currentTime = 0; chuong.play().catch(e=>e);
             }
         }
 
-        // CÁC TÍNH NĂNG CŨ (Giữ nguyên)
+        function kiemTraChepKinh() {
+            if (dangChuyenCau || currentKinhIndex >= danhSachKinh.length) return;
+            
+            let input = document.getElementById('kinhInput');
+            let target = danhSachKinh[currentKinhIndex];
+            
+            // Xóa khoảng trắng thừa ở cuối (nếu bàn phím tự động thêm dấu cách)
+            if (input.value.trim() === target) {
+                dangChuyenCau = true;
+                input.style.backgroundColor = "#d4edda"; // Sáng nền xanh
+                document.getElementById('kinhThongBao').innerText = "✨ Hoan hỉ! Đang chuyển câu...";
+                
+                // Đợi 1 giây rồi chuyển qua câu tiếp theo
+                setTimeout(() => {
+                    currentKinhIndex++;
+                    hienThiCauKinh();
+                }, 1000); 
+            }
+        }
+        
+        // Hỗ trợ thêm phím Enter nếu người dùng có thói quen bấm Enter
+        function xuLyEnterKinh(event) {
+            if (event.key === "Enter") {
+                kiemTraChepKinh();
+            }
+        }
+
         for (let i = 0; i < 15; i++) {
             let petal = document.createElement("div"); petal.className = "petals"; petal.innerHTML = "🌸"; 
             petal.style.left = Math.random() * 100 + "vw"; petal.style.animationDuration = Math.random() * 3 + 4 + "s"; petal.style.animationDelay = Math.random() * 5 + "s";
