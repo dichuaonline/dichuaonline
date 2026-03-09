@@ -11,134 +11,73 @@
     <meta property="og:type" content="website" />
 
     <style>
-        /* NỀN CHUNG */
-        body { 
-            text-align: center; 
-            background-color: #1a0f05; 
-            font-family: 'Times New Roman', Times, serif; 
-            color: #fff; 
-            margin: 0; 
-            padding-bottom: 50px;
-            overflow-x: hidden;
-        }
-
-        .altar-container { 
-            min-height: 100vh;
-            display: flex; flex-direction: column; align-items: center; justify-content: start;
-            padding-top: 30px;
-            background: radial-gradient(circle, rgba(70, 40, 20, 1) 0%, rgba(15, 8, 3, 1) 100%); 
-            position: relative;
-        }
-
-        /* ĐÈN LỒNG */
-        .lantern {
-            font-size: 50px; position: absolute; top: 10px;
-            animation: swing 3s infinite ease-in-out alternate;
-            transform-origin: top center;
-            filter: drop-shadow(0 0 10px rgba(255, 50, 0, 0.4)); z-index: 10;
-        }
+        body { text-align: center; background-color: #1a0f05; font-family: 'Times New Roman', Times, serif; color: #fff; margin: 0; padding-bottom: 50px; overflow-x: hidden; }
+        .altar-container { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: start; padding-top: 30px; background: radial-gradient(circle, rgba(70, 40, 20, 1) 0%, rgba(15, 8, 3, 1) 100%); position: relative; }
+        
+        .lantern { font-size: 50px; position: absolute; top: 10px; animation: swing 3s infinite ease-in-out alternate; transform-origin: top center; filter: drop-shadow(0 0 10px rgba(255, 50, 0, 0.4)); z-index: 10; }
         .lantern.left { left: 5%; }
         .lantern.right { right: 5%; animation-delay: 0.5s; }
         @keyframes swing { from { transform: rotate(5deg); } to { transform: rotate(-5deg); } }
 
-        /* HOA SEN RƠI */
-        .petals {
-            position: fixed; top: -10%; z-index: 0;
-            font-size: 20px; user-select: none; pointer-events: none;
-            animation: fall linear infinite; opacity: 0.5;
-        }
-        @keyframes fall {
-            0% { transform: translateY(-10vh) rotate(0deg) translateX(0); opacity: 0; }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% { transform: translateY(110vh) rotate(360deg) translateX(50px); opacity: 0; }
-        }
+        .petals { position: fixed; top: -10%; z-index: 0; font-size: 20px; user-select: none; pointer-events: none; animation: fall linear infinite; opacity: 0.5; }
+        @keyframes fall { 0% { transform: translateY(-10vh) rotate(0deg) translateX(0); opacity: 0; } 10% { opacity: 0.6; } 90% { opacity: 0.6; } 100% { transform: translateY(110vh) rotate(360deg) translateX(50px); opacity: 0; } }
 
         h1 { color: #ffcc00; text-shadow: 0 0 10px #ff3300, 2px 2px 4px #000; margin: 10px 0; font-size: 32px; letter-spacing: 2px;}
-        h2 { color: #d4af37; text-shadow: 2px 2px 4px #000; margin: 0 0 20px 0; font-weight: normal; font-style: italic;}
+        h2 { color: #d4af37; text-shadow: 2px 2px 4px #000; margin: 0 0 10px 0; font-weight: normal; font-style: italic;}
         
-        /* TƯỢNG PHẬT */
-        .buddha-statue {
-            width: 90%; max-width: 500px; height: auto; border-radius: 15px;    
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); 
-            z-index: 2; position: relative;            
-        }
+        /* KHU VỰC LỜI PHẬT DẠY & LỊCH ÂM */
+        .daily-quote-box { background: rgba(30, 15, 5, 0.6); padding: 10px 20px; border-radius: 10px; width: 85%; max-width: 450px; margin-bottom: 20px; border: 1px dotted #d4af37; z-index: 3;}
+        .lunar-date { color: #ffcc00; font-weight: bold; font-size: 14px; margin: 0 0 5px 0; text-transform: uppercase;}
+        .quote-text { font-style: italic; color: #eee; font-size: 15px; margin: 0; line-height: 1.4;}
 
-        /* BÁT HƯƠNG */
-        .main-altar { 
-            position: relative; width: 300px; height: 120px; z-index: 3; 
-            margin-top: -60px; 
-            margin-bottom: 20px;
-        }
-        
-        .bathuong { 
-            position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 140px; 
-            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.8)); 
-        }
-        
-        /* HIỆU ỨNG NHANG (Đã phóng to gấp 3 lần) */
-        .incense-stick { 
-            position: absolute; 
-            bottom: 45px; 
-            left: 50%; 
-            width: 90px; 
-            display: none; 
-            transform-origin: bottom center; 
-            animation: 
-                camNhang 1s ease-out forwards, 
-                nhangChay 3s 1s infinite alternate ease-in-out;
-        }
+        .buddha-statue { width: 90%; max-width: 500px; height: auto; border-radius: 15px; box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); z-index: 2; position: relative; }
 
-        @keyframes camNhang {
-            0% { transform: translateX(-50%) translateY(-100px); opacity: 0; }
-            100% { transform: translateX(-50%) translateY(0); opacity: 1; }
-        }
+        .main-altar { position: relative; width: 300px; height: 120px; z-index: 3; margin-top: -60px; margin-bottom: 20px; }
+        .bathuong { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 140px; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.8)); z-index: 4;}
         
-        @keyframes nhangChay {
-            0% { transform: translateX(-50%) rotate(0deg); filter: drop-shadow(0 -10px 15px #ff3300); opacity: 0.8; }
-            100% { transform: translateX(-50%) rotate(1deg); filter: drop-shadow(0 -20px 25px #ff0000); opacity: 1; }
-        }
+        /* CÂY NHANG TO GẤP 3 */
+        .incense-stick { position: absolute; bottom: 45px; left: 50%; width: 90px; display: none; transform-origin: bottom center; animation: camNhang 1s ease-out forwards, nhangChay 3s 1s infinite alternate ease-in-out; z-index: 3;}
+        @keyframes camNhang { 0% { transform: translateX(-50%) translateY(-100px); opacity: 0; } 100% { transform: translateX(-50%) translateY(0); opacity: 1; } }
+        @keyframes nhangChay { 0% { transform: translateX(-50%) rotate(0deg); filter: drop-shadow(0 -10px 15px #ff3300); opacity: 0.8; } 100% { transform: translateX(-50%) rotate(1deg); filter: drop-shadow(0 -20px 25px #ff0000); opacity: 1; } }
 
-        /* NÚT BẤM TƯƠNG TÁC */
-        .button-group { display: flex; flex-direction: column; gap: 15px; align-items: center; width: 100%; z-index: 3;}
-        
-        button.act-btn { 
-            padding: 12px 30px; font-size: 16px; cursor: pointer; 
-            background: linear-gradient(145deg, #8b2500, #5c1400); 
-            color: #ffcc00; border: 1px solid #d4af37; border-radius: 30px; 
-            text-transform: uppercase; font-weight: bold; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.4); transition: all 0.2s; width: 80%; max-width: 300px;
-        }
+        /* KHU VỰC THẮP NẾN */
+        .candle-container { position: absolute; bottom: -10px; width: 100%; display: flex; justify-content: center; gap: 10px; z-index: 5;}
+        .lotus-candle { font-size: 25px; filter: drop-shadow(0 -5px 10px #ff9900); animation: flicker 1.5s infinite alternate; }
+        @keyframes flicker { 0% { opacity: 0.8; transform: scale(0.95); } 100% { opacity: 1; transform: scale(1.05); } }
+
+        /* HIỆU ỨNG PHÓNG SINH CHIM BAY */
+        .bird { position: fixed; bottom: 0; font-size: 30px; z-index: 100; pointer-events: none; animation: flyUp 4s ease-in forwards; opacity: 0; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.5));}
+        @keyframes flyUp { 0% { transform: translateY(0) scale(0.5) translateX(0); opacity: 1; } 100% { transform: translateY(-120vh) scale(1.5) translateX(100px); opacity: 0; } }
+
+        /* LƯỚI NÚT BẤM GỌN GÀNG */
+        .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 90%; max-width: 450px; z-index: 3; margin-top: 10px;}
+        button.act-btn { padding: 12px 10px; font-size: 14px; cursor: pointer; background: linear-gradient(145deg, #8b2500, #5c1400); color: #ffcc00; border: 1px solid #d4af37; border-radius: 10px; text-transform: uppercase; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.4); transition: all 0.2s; }
         button.act-btn:active { box-shadow: 0 1px 2px rgba(0,0,0,0.5); transform: translateY(3px); }
-        button.act-btn.xam-btn { background: linear-gradient(145deg, #b8860b, #8b6508); color: #fff;}
-        button.act-btn.chuong-btn { background: linear-gradient(145deg, #d4af37, #a67c00); color: #333;}
-        button.act-btn:disabled { opacity: 0.7; cursor: not-allowed; } 
-
-        /* KHUNG KHẤN NGUYỆN & CÚNG DƯỜNG */
-        .wish-section, .qr-section, .merit-board { 
-            margin-top: 30px; background: rgba(30, 15, 5, 0.85); 
-            padding: 25px 20px; border-radius: 15px; width: 85%; max-width: 500px; 
-            border: 1px solid #d4af37; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 3;
-        }
-        textarea { width: 90%; padding: 12px; margin-top: 10px; border-radius: 8px; border: 1px solid #d4af37; background: #fff8dc; font-family: inherit; font-size: 15px; color: #333;}
+        .full-width-btn { grid-column: span 2; }
+        .xam-btn { background: linear-gradient(145deg, #b8860b, #8b6508) !important; color: #fff !important;}
+        .chuong-btn { background: linear-gradient(145deg, #d4af37, #a67c00) !important; color: #333 !important;}
+        .phongsinh-btn { background: linear-gradient(145deg, #1e90ff, #0000cd) !important; color: #fff !important;}
+        .chepkinh-btn { background: linear-gradient(145deg, #4b0082, #2c004e) !important; color: #fff !important;}
+        
+        /* CÁC SECTION CŨ */
+        .wish-section, .qr-section, .merit-board { margin-top: 25px; background: rgba(30, 15, 5, 0.85); padding: 25px 20px; border-radius: 15px; width: 85%; max-width: 500px; border: 1px solid #d4af37; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 3;}
+        textarea, input[type="text"] { width: 90%; padding: 12px; margin-top: 10px; border-radius: 8px; border: 1px solid #d4af37; background: #fff8dc; font-family: inherit; font-size: 15px; color: #333;}
         .qr-code-img { width: 180px; border: 3px solid #d4af37; padding: 5px; background: white; margin-top: 15px; border-radius: 10px;}
 
-        /* BẢNG VÀNG CÔNG ĐỨC */
         .merit-list-container { height: 120px; overflow: hidden; position: relative; background: rgba(0, 0, 0, 0.4); border-radius: 8px; padding: 10px; border: 1px inset #d4af37; }
         .merit-list { position: absolute; width: 100%; left: 0; animation: scrollUp 25s linear infinite; }
         .merit-list-container:hover .merit-list, .merit-list-container:active .merit-list { animation-play-state: paused; }
         .merit-list p { margin: 10px 0; color: #ffcc00; font-size: 15px; font-style: italic; padding: 0 10px; line-height: 1.4; }
         @keyframes scrollUp { 0% { transform: translateY(120px); } 100% { transform: translateY(-100%); } }
 
-        /* POPUP XIN XĂM */
-        .modal-xam { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 100; justify-content: center; align-items: center; }
-        .xam-content { background: #fff8dc; color: #8b2500; width: 85%; max-width: 400px; padding: 30px 20px; border-radius: 10px; border: 4px double #d4af37; text-align: center; box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); position: relative; }
-        .xam-title { font-size: 24px; font-weight: bold; color: #b22222; margin-bottom: 15px; border-bottom: 1px solid #d4af37; padding-bottom: 10px;}
-        .xam-poem { font-style: italic; font-size: 16px; margin-bottom: 15px; white-space: pre-line; line-height: 1.5;}
-        .xam-meaning { font-size: 15px; color: #333; font-weight: bold; background: rgba(212, 175, 55, 0.2); padding: 10px; border-radius: 5px;}
-        .close-btn { margin-top: 20px; padding: 8px 20px; background: #8b2500; color: #fff; border: none; border-radius: 5px; cursor: pointer; font-size: 15px;}
+        /* MODAL CHUNG CHO XĂM VÀ CHÉP KINH */
+        .modal-box { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 100; justify-content: center; align-items: center; }
+        .modal-content { background: #fff8dc; color: #8b2500; width: 85%; max-width: 400px; padding: 30px 20px; border-radius: 10px; border: 4px double #d4af37; text-align: center; box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); position: relative; }
+        .close-btn { margin-top: 20px; padding: 8px 20px; background: #8b2500; color: #fff; border: none; border-radius: 5px; cursor: pointer; font-size: 15px; text-transform: uppercase; font-weight: bold;}
         
-        /* TUYÊN BỐ MIỄN TRỪ TRÁCH NHIỆM */
+        /* RIÊNG CHÉP KINH */
+        .kinh-target { font-size: 18px; font-weight: bold; margin: 15px 0; color: #4b0082; background: rgba(212, 175, 55, 0.2); padding: 10px; border-radius: 5px; pointer-events: none; user-select: none;}
+
         .disclaimer-text { margin-top: 40px; font-size: 13px; color: #999; padding: 0 25px; line-height: 1.5; font-style: italic; }
     </style>
 </head>
@@ -152,32 +91,41 @@
         <h1>Ngôi Chùa Online</h1>
         <h2>Phật Tại Tâm Trung</h2>
 
+        <div class="daily-quote-box">
+            <p id="lunarDate" class="lunar-date">Hôm nay: Ngày ... Âm lịch</p>
+            <p id="dailyQuote" class="quote-text">"Tâm bình thế giới bình, tâm an vạn sự an."</p>
+        </div>
+
         <img src="image_0.png" alt="Tượng Phật" class="buddha-statue">
 
         <div class="main-altar">
             <img src="image_1.png" alt="Bát Hương" class="bathuong">
             <img id="incense-stick" src="image_2.png" alt="Nhang" class="incense-stick">
+            <div class="candle-container" id="candleContainer"></div>
         </div>
 
-        <div class="button-group">
-            <button class="act-btn" onclick="thapNhang()">Thắp Nén Tâm Hương</button>
-            <button class="act-btn chuong-btn" onclick="thinhChuong()">🔔 Thỉnh Chuông Gia Trì</button>
-            <button class="act-btn xam-btn" id="btnGieoXam" onclick="gieoQueXam()">🎋 Thành Tâm Xin Xăm</button>
-            <button onclick="dieuKhienNhac()" style="background: transparent; color: #d4af37; border: 1px solid #d4af37; padding: 8px 20px; cursor: pointer; border-radius: 20px; font-size: 14px; margin-top: 5px;">🔊 Bật / Tắt Nhạc Thiền</button>
+        <div class="btn-grid">
+            <button class="act-btn" onclick="thapNhang()">Thắp Tâm Hương</button>
+            <button class="act-btn chuong-btn" onclick="thinhChuong()">🔔 Thỉnh Chuông</button>
+            <button class="act-btn full-width-btn" onclick="thapNen()">🪷 Thắp Nến Dâng Phật (Tối đa 5)</button>
+            <button class="act-btn phongsinh-btn" onclick="phongSinh()">🕊️ Phóng Sinh</button>
+            <button class="act-btn chepkinh-btn" onclick="moChepKinh()">✍️ Chép Kinh</button>
+            <button class="act-btn xam-btn full-width-btn" id="btnGieoXam" onclick="gieoQueXam()">🎋 Thành Tâm Xin Xăm</button>
         </div>
+        
+        <button onclick="dieuKhienNhac()" style="background: transparent; color: #d4af37; border: 1px solid #d4af37; padding: 8px 20px; cursor: pointer; border-radius: 20px; font-size: 14px; margin-top: 15px; z-index: 3;">🔊 Bật / Tắt Nhạc Thiền</button>
 
         <div class="wish-section">
             <h3 style="color: #d4af37; margin-bottom: 5px;">Gửi gắm lời khấn nguyện</h3>
-            <p style="font-style: italic; font-size: 14px; color: #ccc; margin-top: 0;">(Hãy viết những mong cầu thiện lành cho bản thân và gia quyến)</p>
             <textarea id="wishBox" rows="4" placeholder="Nam mô A Di Đà Phật. Con nguyện cầu..."></textarea>
             <br>
-            <button class="act-btn" style="width: auto; padding: 10px 20px; font-size: 14px; margin-top: 10px;" onclick="guiDieuUoc()">Gửi Lời Nguyện Cầu</button>
+            <button class="act-btn full-width-btn" style="width: auto; padding: 10px 20px; margin-top: 10px;" onclick="guiDieuUoc()">Gửi Lời Nguyện Cầu</button>
         </div>
 
         <div class="qr-section">
             <h3 style="color: #d4af37; margin-top: 0;">Gieo duyên cúng dường</h3>
-            <p style="font-size: 14px; line-height: 1.5;">Mọi sự phát tâm của quý vị sẽ giúp duy trì trang web này và một phần được gửi đến những hoàn cảnh khó khăn.</p>
-            <img src="image_3.png" alt="Mã QR Cúng Dường" class="qr-code-img">
+            <p style="font-size: 14px; line-height: 1.5;">Mọi sự phát tâm sẽ giúp duy trì trang web và từ thiện.</p>
+            <img src="image_3.png" alt="Mã QR" class="qr-code-img">
             <p style="font-size: 18px; margin-bottom: 5px; color: #ffcc00;"><strong>STK: 8338988888</strong></p>
             <p style="margin-top: 0;">Ngân hàng MB</p>
         </div>
@@ -189,15 +137,6 @@
                     <p>🌸 Gia đình Phật tử Diệu Âm - Phát tâm cúng dường</p>
                     <p>🌸 Ngô Nhật Minh - Gieo duyên cầu gia đạo bình an</p>
                     <p>🌸 Trần Thị Mai - Hồi hướng công đức cho bá tánh</p>
-                    <p>🌸 Nguyễn Văn An - Nguyện cầu sức khỏe cho cha mẹ</p>
-                    <p>🌸 Phật tử Thiện Tâm - Cầu quốc thái dân an, thế giới hòa bình</p>
-                    <p>🌸 Gia đình Lê Hoàng - Mong tiêu trừ nghiệp chướng, vạn sự hanh thông</p>
-                    <p>🌸 Huỳnh Ngọc Bích - Gieo duyên Tam Bảo, cầu trí tuệ sáng suốt</p>
-                    <p>🌸 Phan Trọng Tín - Nguyện cầu siêu độ cho cửu huyền thất tổ</p>
-                    <p>🌸 Cháu bé Tuệ Lâm - Ba mẹ cầu bình an, vô bệnh vô tật</p>
-                    <p>🌸 Ẩn danh - Tùy hỷ công đức, mong gia đạo kiết tường</p>
-                    <p>🌸 Vũ Thị Hương - Cầu mong mưa thuận gió hòa, làm ăn chân chính</p>
-                    <p>🌸 Phật tử Liên Hoa - Nguyện một đời sống tốt đời đẹp đạo</p>
                 </div>
             </div>
             <p style="font-size: 12px; color: #aaa; margin-top: 10px; margin-bottom: 0;">(Chạm vào danh sách để tạm dừng)</p>
@@ -206,16 +145,26 @@
         <div class="disclaimer-text">
             *Lưu ý: Đây là không gian tâm linh phi lợi nhuận do cá nhân phát tâm xây dựng, không đại diện hay thuộc sự quản lý của bất kỳ cơ sở/tổ chức Tôn giáo nào. Mọi sự gieo duyên đều hoàn toàn tự nguyện.
         </div>
-        
-        <p style="margin-top: 15px; font-size: 12px; color: #555;">© 2024 Ngôi Chùa Bình An Online. All rights reserved.</p>
+        <p style="margin-top: 15px; font-size: 12px; color: #555;">© 2024 Ngôi Chùa Bình An Online.</p>
     </div>
 
-    <div class="modal-xam" id="xamModal">
-        <div class="xam-content">
-            <div class="xam-title" id="xamTitle">Tên Quẻ</div>
-            <div class="xam-poem" id="xamPoem">Nội dung thơ</div>
-            <div class="xam-meaning" id="xamMeaning">Lời giải</div>
-            <button class="close-btn" onclick="dongQueXam()">Chấp tay hoan hỉ</button>
+    <div class="modal-box" id="xamModal">
+        <div class="modal-content">
+            <div id="xamTitle" style="font-size: 24px; font-weight: bold; color: #b22222; margin-bottom: 15px; border-bottom: 1px solid #d4af37; padding-bottom: 10px;">Tên Quẻ</div>
+            <div id="xamPoem" style="font-style: italic; font-size: 16px; margin-bottom: 15px; white-space: pre-line; line-height: 1.5;">Nội dung thơ</div>
+            <div id="xamMeaning" style="font-size: 15px; color: #333; font-weight: bold; background: rgba(212, 175, 55, 0.2); padding: 10px; border-radius: 5px;">Lời giải</div>
+            <button class="close-btn" onclick="document.getElementById('xamModal').style.display='none'">Chấp tay hoan hỉ</button>
+        </div>
+    </div>
+
+    <div class="modal-box" id="kinhModal">
+        <div class="modal-content">
+            <h3 style="color: #b22222; margin-top: 0;">Góc Chép Kinh Tĩnh Tâm</h3>
+            <p style="font-size: 14px; color: #555;">Hãy giữ tâm thanh tịnh và gõ lại chính xác dòng chú dưới đây (Bao gồm cả viết hoa và dấu):</p>
+            <div class="kinh-target" id="kinhTarget">Nam mô Đại bi Quán Thế Âm Bồ Tát</div>
+            <input type="text" id="kinhInput" placeholder="Gõ lại dòng chữ trên vào đây..." oninput="kiemTraChepKinh()">
+            <br>
+            <button class="close-btn" onclick="dongChepKinh()">Đóng Lại</button>
         </div>
     </div>
 
@@ -223,58 +172,128 @@
     <audio id="tiengChuong"><source src="chuong.mp3" type="audio/mpeg"></audio>
 
     <script>
-        // HOA SEN RƠI
-        const snowflakesContainer = document.getElementById("snowflakes");
+        // 1. TỰ ĐỘNG TÍNH LỊCH ÂM & LỜI DẠY (Dùng thủ thuật Native API không cần thư viện ngoài)
+        function capNhatLichVaLoiDay() {
+            try {
+                // Lấy ngày âm lịch của hệ thống
+                const formatter = new Intl.DateTimeFormat('vi-VN-u-ca-chinese', { day: 'numeric', month: 'numeric' });
+                const parts = formatter.formatToParts(new Date());
+                const amLichDay = parts.find(p => p.type === 'day')?.value;
+                const amLichMonth = parts.find(p => p.type === 'month')?.value;
+                
+                let textHienThi = `Hôm nay: Mùng ${amLichDay} Tháng ${amLichMonth} (Âm lịch)`;
+                
+                // Cảnh báo ngày rằm mùng 1
+                if (amLichDay == "1" || amLichDay == "15") {
+                    textHienThi += " 🌸 Lời nhắc: Hôm nay ngày chay tịnh.";
+                }
+                document.getElementById("lunarDate").innerText = textHienThi;
+            } catch (e) { document.getElementById("lunarDate").innerText = "Hãy giữ tâm bình an mỗi ngày."; }
+
+            // Lời Phật dạy ngẫu nhiên
+            const quotes = [
+                "Tâm bình thế giới bình, tâm an vạn sự an.",
+                "Sở dĩ người ta đau khổ chính vì đeo đuổi những thứ sai lầm.",
+                "Hàng ngàn ngọn nến có thể được thắp sáng bởi một ngọn nến, và cuộc đời của ngọn nến ấy không hề bị tàn lụi. Hạnh phúc không bao giờ cạn đi khi ta biết sẻ chia.",
+                "Bình yên đến từ bên trong. Đừng tìm nó ở bên ngoài.",
+                "Nhân quả không nợ ai bao giờ, gieo nhân thiện ắt gặt quả lành."
+            ];
+            document.getElementById("dailyQuote").innerText = '"' + quotes[Math.floor(Math.random() * quotes.length)] + '"';
+        }
+        capNhatLichVaLoiDay(); // Chạy ngay khi mở web
+
+        // 2. TÍNH NĂNG THẮP NẾN
+        let soNen = 0;
+        function thapNen() {
+            if (soNen >= 5) { alert("Bàn thờ đã sáng rực rỡ rồi, bạn không cần thắp thêm nữa nhé."); return; }
+            let nen = document.createElement("div");
+            nen.className = "lotus-candle";
+            nen.innerHTML = "🪷🔥"; 
+            document.getElementById("candleContainer").appendChild(nen);
+            soNen++;
+        }
+
+        // 3. TÍNH NĂNG PHÓNG SINH CHIM
+        function phongSinh() {
+            var nhac = document.getElementById('nhacNen'); if (nhac.paused) { nhac.play().catch(e=>console.log(e)); }
+            
+            for (let i = 0; i < 7; i++) {
+                setTimeout(() => {
+                    let bird = document.createElement("div");
+                    bird.className = "bird";
+                    bird.innerHTML = "🕊️";
+                    // Chim xuất hiện ngẫu nhiên dọc cạnh dưới màn hình
+                    bird.style.left = Math.random() * 80 + 10 + "vw";
+                    bird.style.animationDuration = Math.random() * 2 + 3 + "s"; // Bay 3-5 giây
+                    document.body.appendChild(bird);
+                    
+                    // Xóa chim sau khi bay xong để không nặng web
+                    setTimeout(() => { bird.remove(); }, 5000);
+                }, i * 300); // Chim bay ra liên tiếp cách nhau 0.3s
+            }
+            alert("Công đức vô lượng! Những chú chim đã được tự do trở về với bầu trời.");
+        }
+
+        // 4. TÍNH NĂNG CHÉP KINH
+        const cauChu = "Nam mô Đại bi Quán Thế Âm Bồ Tát";
+        function moChepKinh() {
+            document.getElementById('kinhInput').value = ""; // Xóa trắng ô gõ
+            document.getElementById('kinhInput').style.backgroundColor = "#fff8dc";
+            document.getElementById('kinhModal').style.display = 'flex';
+        }
+        function dongChepKinh() { document.getElementById('kinhModal').style.display = 'none'; }
+        
+        function kiemTraChepKinh() {
+            let input = document.getElementById('kinhInput');
+            if (input.value === cauChu) {
+                input.style.backgroundColor = "#d4edda"; // Đổi màu xanh lá
+                setTimeout(() => {
+                    alert("Hoan hỉ! Bạn đã chép xong câu chú với tâm thanh tịnh. Chúc bạn vạn sự bình an.");
+                    dongChepKinh();
+                }, 300);
+            }
+        }
+
+        // CÁC TÍNH NĂNG CŨ (Giữ nguyên)
         for (let i = 0; i < 15; i++) {
             let petal = document.createElement("div"); petal.className = "petals"; petal.innerHTML = "🌸"; 
             petal.style.left = Math.random() * 100 + "vw"; petal.style.animationDuration = Math.random() * 3 + 4 + "s"; petal.style.animationDelay = Math.random() * 5 + "s";
-            snowflakesContainer.appendChild(petal);
+            document.getElementById("snowflakes").appendChild(petal);
         }
 
         const danhSachXam = [
-            { ten: "Quẻ Số 1: THƯỢNG CÁT", tho: "Trời thu mây tạnh trăng tỏ ngời\nMọi việc hanh thông thuận ý trời\nCông danh tài lộc đều như nguyện\nGia đạo bình an khắp chốn vui.", giai: "Lời giải: Quẻ này rất tốt. Mọi sự mong cầu đều thuận lợi." },
-            { ten: "Quẻ Số 2: TRUNG BÌNH", tho: "Thuyền đi giữa biển sóng nhấp nhô\nGiữ vững tay chèo chớ vội lo\nSương mù rồi sẽ tan biến mất\nBến bờ phía trước đỗ bến đò.", giai: "Lời giải: Công việc hiện tại có chút thử thách. Khuyên bạn nên nhẫn nại, tĩnh tâm." },
-            { ten: "Quẻ Số 3: ĐẠI CÁT", tho: "Cây khô nảy lộc đón xuân sang\nChim hót đầu cành nắng chói chang\nQuý nhân phù trợ đường quang đãng\nPhước lộc tràn trề gia đạo an.", giai: "Lời giải: Đang có thời vận rất tốt. Lòng thành kính của bạn đã thấu đến chư Phật." },
-            { ten: "Quẻ Số 4: HẠ CÁT", tho: "Đêm đông giá rét tuyết rơi đầy\nChim chóc tìm về chốn gốc cây\nViệc lớn lúc này khuyên chớ vội\nTu tâm dưỡng tính đợi ngày mai.", giai: "Lời giải: Thời điểm này không hợp để quyết định việc lớn hay đi xa. Hãy an phận thủ thường." },
-            { ten: "Quẻ Số 5: TRUNG BÌNH CÁT", tho: "Gieo hạt mầm xanh xuống mảnh nương\nCông chăm tưới tẩm sớm dầm sương\nĐợi ngày đơm trái thu quả ngọt\nCó làm có hưởng thuận lẽ thường.", giai: "Lời giải: Mọi nỗ lực và sự tử tế của bạn ở hiện tại chắc chắn sẽ mang lại quả ngọt trong tương lai." }
+            { ten: "Quẻ Số 1: THƯỢNG CÁT", tho: "Trời thu mây tạnh trăng tỏ ngời\nMọi việc hanh thông thuận ý trời", giai: "Lời giải: Rất tốt. Mọi sự thuận lợi." },
+            { ten: "Quẻ Số 2: TRUNG BÌNH", tho: "Thuyền đi giữa biển sóng nhấp nhô\nGiữ vững tay chèo chớ vội lo", giai: "Lời giải: Cần nhẫn nại, tĩnh tâm." }
         ];
 
         function thapNhang() {
-            // Mở bát hương hiện lên với hiệu ứng cắm nhang mới
             document.getElementById('incense-stick').style.display = 'block';
-            var nhac = document.getElementById('nhacNen');
-            if (nhac.paused) { nhac.play().catch(e => console.log(e)); }
+            var nhac = document.getElementById('nhacNen'); if (nhac.paused) { nhac.play().catch(e=>e); }
         }
 
         function thinhChuong() {
-            var chuong = document.getElementById('tiengChuong'); chuong.currentTime = 0; 
-            chuong.play().catch(e => alert("Vui lòng tương tác với trang web trước khi thỉnh chuông."));
+            var chuong = document.getElementById('tiengChuong'); chuong.currentTime = 0; chuong.play().catch(e=>alert("Vui lòng chạm vào màn hình trước."));
         }
 
         function dieuKhienNhac() {
-            var nhac = document.getElementById('nhacNen');
-            if (nhac.paused) { nhac.play(); } else { nhac.pause(); }
+            var nhac = document.getElementById('nhacNen'); if (nhac.paused) { nhac.play(); } else { nhac.pause(); }
         }
 
         function guiDieuUoc() {
             var wish = document.getElementById('wishBox').value;
-            if (wish.trim() !== "") {
-                alert("Tâm nguyện của bạn đã được gửi gắm tới chư Phật. Hãy giữ tâm an lành và làm nhiều việc thiện."); document.getElementById('wishBox').value = ""; 
-            } else { alert("Vui lòng viết lời khấn nguyện của bạn trước khi gửi."); }
+            if (wish.trim() !== "") { alert("Tâm nguyện đã được gửi tới chư Phật."); document.getElementById('wishBox').value = ""; } 
+            else { alert("Vui lòng viết lời nguyện cầu."); }
         }
 
         function gieoQueXam() {
-            var btn = document.getElementById("btnGieoXam");
-            btn.innerText = "🎋 Đang thành tâm thỉnh quẻ..."; btn.disabled = true;
+            var btn = document.getElementById("btnGieoXam"); btn.innerText = "🎋 Đang thỉnh quẻ..."; btn.disabled = true;
             setTimeout(function() {
-                var randomIndex = Math.floor(Math.random() * danhSachXam.length); var queXam = danhSachXam[randomIndex];
+                var queXam = danhSachXam[Math.floor(Math.random() * danhSachXam.length)];
                 document.getElementById('xamTitle').innerText = queXam.ten; document.getElementById('xamPoem').innerText = queXam.tho; document.getElementById('xamMeaning').innerText = queXam.giai;
                 document.getElementById('xamModal').style.display = 'flex';
                 btn.innerText = "🎋 Thành Tâm Xin Xăm"; btn.disabled = false;
             }, 2000); 
         }
-
-        function dongQueXam() { document.getElementById('xamModal').style.display = 'none'; }
     </script>
 </body>
 </html>
