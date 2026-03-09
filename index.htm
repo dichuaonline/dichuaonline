@@ -97,21 +97,21 @@
         </div>
 
         <div class="btn-grid">
-            <button class="act-btn" onclick="thapNhang()">Thắp Tâm Hương</button>
-            <button class="act-btn chuong-btn" onclick="thinhChuong()">🔔 Thỉnh Chuông</button>
-            <button class="act-btn full-width-btn" onclick="thapNen()">🪷 Thắp Nến Dâng Phật (Tối đa 5)</button>
-            <button class="act-btn phongsinh-btn" onclick="phongSinh()">🕊️ Phóng Sinh</button>
-            <button class="act-btn chepkinh-btn" onclick="moChepKinh()">✍️ Chép Kinh</button>
-            <button class="act-btn xam-btn full-width-btn" id="btnGieoXam" onclick="gieoQueXam()">🎋 Thành Tâm Xin Xăm</button>
+            <button type="button" class="act-btn" onclick="thapNhang()">Thắp Tâm Hương</button>
+            <button type="button" class="act-btn chuong-btn" onclick="thinhChuong()">🔔 Thỉnh Chuông</button>
+            <button type="button" class="act-btn full-width-btn" onclick="thapNen()">🪷 Thắp Nến Dâng Phật (Tối đa 5)</button>
+            <button type="button" class="act-btn phongsinh-btn" onclick="phongSinh()">🕊️ Phóng Sinh</button>
+            <button type="button" class="act-btn chepkinh-btn" onclick="moChepKinh()">✍️ Chép Kinh</button>
+            <button type="button" class="act-btn xam-btn full-width-btn" id="btnGieoXam" onclick="gieoQueXam()">🎋 Thành Tâm Xin Xăm</button>
         </div>
         
-        <button onclick="dieuKhienNhac()" style="background: transparent; color: #d4af37; border: 1px solid #d4af37; padding: 8px 20px; cursor: pointer; border-radius: 20px; font-size: 14px; margin-top: 15px; z-index: 3;">🔊 Bật / Tắt Nhạc Thiền</button>
+        <button type="button" onclick="dieuKhienNhac()" style="background: transparent; color: #d4af37; border: 1px solid #d4af37; padding: 8px 20px; cursor: pointer; border-radius: 20px; font-size: 14px; margin-top: 15px; z-index: 3;">🔊 Bật / Tắt Nhạc Thiền</button>
 
         <div class="wish-section">
             <h3 style="color: #d4af37; margin-bottom: 5px;">Gửi gắm lời khấn nguyện</h3>
             <textarea id="wishBox" rows="4" placeholder="Nam mô A Di Đà Phật. Con nguyện cầu..."></textarea>
             <br>
-            <button class="act-btn full-width-btn" style="width: auto; padding: 10px 20px; margin-top: 10px;" onclick="guiDieuUoc()">Gửi Lời Nguyện Cầu</button>
+            <button type="button" class="act-btn full-width-btn" style="width: auto; padding: 10px 20px; margin-top: 10px;" onclick="guiDieuUoc()">Gửi Lời Nguyện Cầu</button>
         </div>
 
         <div class="qr-section">
@@ -145,7 +145,7 @@
             <div id="xamTitle" style="font-size: 24px; font-weight: bold; color: #b22222; margin-bottom: 15px; border-bottom: 1px solid #d4af37; padding-bottom: 10px;">Tên Quẻ</div>
             <div id="xamPoem" style="font-style: italic; font-size: 16px; margin-bottom: 15px; white-space: pre-line; line-height: 1.5;">Nội dung thơ</div>
             <div id="xamMeaning" style="font-size: 15px; color: #333; font-weight: bold; background: rgba(212, 175, 55, 0.2); padding: 10px; border-radius: 5px;">Lời giải</div>
-            <button class="close-btn" onclick="document.getElementById('xamModal').style.display='none'">Chấp tay hoan hỉ</button>
+            <button type="button" class="close-btn" onclick="document.getElementById('xamModal').style.display='none'">Chấp tay hoan hỉ</button>
         </div>
     </div>
 
@@ -154,10 +154,12 @@
             <h3 style="color: #b22222; margin-top: 0;">Góc Chép Kinh Tĩnh Tâm</h3>
             <div id="kinhProgress" style="font-size: 13px; color: #8b2500; font-weight: bold; text-transform: uppercase;">Câu 1/5</div>
             <div class="kinh-target" id="kinhTarget">Nam mô A Di Đà Phật</div>
-            <input type="text" id="kinhInput" placeholder="Gõ lại câu trên rồi bấm Enter..." oninput="kiemTraChepKinh()" onkeypress="xuLyEnterKinh(event)">
+            
+            <input type="text" id="kinhInput" placeholder="Gõ lại câu trên rồi bấm Enter..." oninput="kiemTraChepKinh()" onkeydown="xuLyEnterKinh(event)">
+            
             <div id="kinhThongBao" style="height: 20px; font-size: 14px; color: #2e8b57; margin-top: 10px; font-style: italic; font-weight: bold;"></div>
             <br>
-            <button class="close-btn" onclick="dongChepKinh()">Đóng Lại</button>
+            <button type="button" class="close-btn" onclick="dongChepKinh()">Đóng Lại</button>
         </div>
     </div>
 
@@ -207,7 +209,7 @@
             alert("Công đức vô lượng! Những chú chim đã được tự do trở về với bầu trời.");
         }
 
-        // TÍNH NĂNG CHÉP KINH NÂNG CẤP
+        // TÍNH NĂNG CHÉP KINH NÂNG CẤP (Đã có "trí nhớ")
         const danhSachKinh = [
             "Nam mô A Di Đà Phật",
             "Nam mô Đại bi Quán Thế Âm Bồ Tát",
@@ -215,11 +217,15 @@
             "Nam mô Địa Tạng Vương Bồ Tát",
             "Tâm bình thế giới bình, tâm an vạn sự an"
         ];
+        
         let currentKinhIndex = 0;
         let dangChuyenCau = false;
 
         function moChepKinh() {
-            currentKinhIndex = 0;
+            // Chỉ bắt đầu lại từ số 0 nếu đã chép xong hết trước đó
+            if (currentKinhIndex >= danhSachKinh.length) {
+                currentKinhIndex = 0; 
+            }
             document.getElementById('kinhInput').style.display = 'block';
             hienThiCauKinh();
             document.getElementById('kinhModal').style.display = 'flex';
@@ -256,13 +262,11 @@
             let input = document.getElementById('kinhInput');
             let target = danhSachKinh[currentKinhIndex];
             
-            // Xóa khoảng trắng thừa ở cuối (nếu bàn phím tự động thêm dấu cách)
             if (input.value.trim() === target) {
                 dangChuyenCau = true;
-                input.style.backgroundColor = "#d4edda"; // Sáng nền xanh
+                input.style.backgroundColor = "#d4edda"; 
                 document.getElementById('kinhThongBao').innerText = "✨ Hoan hỉ! Đang chuyển câu...";
                 
-                // Đợi 1 giây rồi chuyển qua câu tiếp theo
                 setTimeout(() => {
                     currentKinhIndex++;
                     hienThiCauKinh();
@@ -270,9 +274,10 @@
             }
         }
         
-        // Hỗ trợ thêm phím Enter nếu người dùng có thói quen bấm Enter
+        // Khóa phím Enter để không bấm nhầm nút Đóng
         function xuLyEnterKinh(event) {
             if (event.key === "Enter") {
+                event.preventDefault(); // CHẶN LỆNH BẤM MẶC ĐỊNH
                 kiemTraChepKinh();
             }
         }
